@@ -1,0 +1,31 @@
+
+
+Nom d'utilisateur: fmsknbsi
+Mot de passe: fms-knb90@pattech
+
+URL du panneau de configuration : https://metal-server.nitrowebhost.co.uk:2083/
++++++++++++++++++++++++++++++++++++++++++++++++++++
+Détails de connexion webmail
+
+URL du webmail: https://metal-server.nitrowebhost.co.uk:2096
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Si vous utilisez un domaine existant avec votre nouveau compte d'hébergement, vous devrez mettre à jour les serveurs de noms pour indiquer les serveurs de noms répertoriés ci-dessous.
+
+Nameserver 1: ns3.nitrowebhost.co.uk (95.217.84.107)
+Nameserver 2: ns4.nitrowebhost.co.uk (95.217.84.107)
+
+
+Nom d'hôte FTP temporaire: 95.217.84.107
+URL de la page Web temporaire: http://95.217.84.107/~fmsknbsi/
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Nom d'hôte FTP: fms-knb.site
+URL de la page Web: http://www.fms-knb.site
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	*Data base:  fmsknbsi_kanabedb
+	* Username:  fmsknbsi_user
+	*Password :  fmsknbsi_kanabedb

@@ -1,0 +1,4 @@
+
+database name: leneces1_kanabedb
+username: kanabe_user
+password: kanabe@password

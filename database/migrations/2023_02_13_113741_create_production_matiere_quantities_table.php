@@ -1,0 +1,24 @@
+<?php
+
+use App\Models\Production;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('production_matiere_quantities', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Production::class);
+            $table->integer('matiere_quantity');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('production_matiere_quantities');
+    }
+};
