@@ -15,7 +15,6 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-
     /**
      * Update the user's profile information.
      *
@@ -35,12 +34,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy(Request $request)
     {
         $request->validateWithBag('userDeletion', [

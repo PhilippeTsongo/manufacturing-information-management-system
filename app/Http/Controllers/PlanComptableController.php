@@ -42,7 +42,7 @@ class PlanComptableController extends Controller
         ]);
 
         if($plan_comptable){
-            session()->flash('message', 'Compte crée avec succès');
+            session()->flash('message', 'Account created successfully');
             return redirect()->route('plan_comptable.index');
         }
  
@@ -81,11 +81,11 @@ class PlanComptableController extends Controller
             ]);
 
             if($plan_comptable){
-                session()->flash('message', 'Compte crée avec succès');
+                session()->flash('message', 'Account uodated succesfully');
                 return redirect()->route('plan_comptable.index');
             }
         }else{
-            session()->flash('message_err', 'Le numéro de compte ne doit pas avoir des lettres ou des signes');
+            session()->flash('message_err', 'The account number must have only digits');
             return redirect()->route('plan_comptable.create');
         }
         
@@ -94,7 +94,7 @@ class PlanComptableController extends Controller
     public function destroy(PlanComptable $plan_comptable)
     {
         $plan_comptable->delete();   
-        session()->flash('message', 'Compte supprimmé avec succès');
+        session()->flash('message', 'Account deleted successfully');
         return redirect()->route('plan_comptable.index');
     }
 }

@@ -40,7 +40,7 @@ class TransactionController extends Controller
         ]);
 
         if($transaction){
-            session()->flash('message', 'Transaction créée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('transaction.index');
         }
         
@@ -72,7 +72,7 @@ class TransactionController extends Controller
         ]);
 
         if($transaction){
-            session()->flash('message', 'Transaction créée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('transaction.index');
         }
     }
@@ -80,7 +80,7 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         $transaction->delete();   
-        session()->flash('message', 'Transaction supprimmée avec succès');
+        session()->flash('message', 'Successful operation');
         return redirect()->route('transaction.index');
     }
 }

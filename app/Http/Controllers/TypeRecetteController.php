@@ -36,16 +36,14 @@ class TypeRecetteController extends Controller
 
         //dd($request->name_recette);
 
-
         $type_recette = TypeRecette::firstOrCreate([
             'name' => $request->name,            
         ]);
 
         if($type_recette){
-            session()->flash('message', 'Type de Recettes crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('type_recette.index');
         }
-        
     }
 
    
@@ -73,7 +71,7 @@ class TypeRecetteController extends Controller
         ]);
 
         if($type_recette){
-            session()->flash('message', 'Type de la Recette modifié avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('type_recette.index');
         }    
     }
@@ -82,7 +80,7 @@ class TypeRecetteController extends Controller
     public function destroy(TypeRecette $type_recette)
     {
         $type_recette->delete();
-        session()->flash('message', "Type de la Recette supprimé avec succès");
+        session()->flash('message', "Successful operation");
         return redirect()->route('type_recette.index');
     }
 

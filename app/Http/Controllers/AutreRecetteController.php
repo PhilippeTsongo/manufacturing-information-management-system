@@ -63,11 +63,11 @@ class AutreRecetteController extends Controller
                 ]);
 
                 if($autreRecette){
-                    session()->flash('message', 'Recette créée avec succès');
+                    session()->flash('message', 'successful operation');
                     return redirect(route('recette.index'));
                 }           
             }else{
-                session()->flash('message', 'Le Montant doit être supérieur à 0');
+                session()->flash('message', 'The amount must be greater than 0');
                 return redirect()->route('recette.create');
             }
         }
@@ -107,11 +107,11 @@ class AutreRecetteController extends Controller
                 ]);
 
                 if($autre_recette){
-                    session()->flash('message', 'Recette modifiéée avec succès');
+                    session()->flash('message', 'Edited successfully');
                     return redirect(route('recette.index'));
                 }           
             }else{
-                session()->flash('message', 'Le Montant doit être supérieur à 0');
+                session()->flash('message', 'The amount must be greater than 0');
                 return redirect()->route('recette.edit', $autre_recette);
             }
         }
@@ -121,7 +121,7 @@ class AutreRecetteController extends Controller
     public function destroy(AutreRecette $autre_recette)
     {
         $autre_recette->delete();
-        session()->flash('message', "Recette supprimée avec succès");
+        session()->flash('message', "Deleted successfully");
         return redirect()->route('recette.index');
     }
 

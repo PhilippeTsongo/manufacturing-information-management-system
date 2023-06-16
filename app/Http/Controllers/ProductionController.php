@@ -146,23 +146,23 @@ class ProductionController extends Controller
                                     
                                     $cout_production = CoutProduction::create([
                                         'production_number' => $number,
-                                        'libelle' => 'Cout De Production Numéro '. $number,
+                                        'libelle' => 'Production cost price '. $number,
                                         'montant' => $amount_sortie_emballage,
-                                        'description' => 'Cout de Production de la quantité de '. $request->emballage_quantity . ' ' . $emballage_name  .' D\'emballages',
+                                        'description' => 'Production price of '. $request->emballage_quantity . ' quantity ' . $emballage_name  .' of packaging',
                                         'date_production' => $today,
                                         'mois' => $month,
                                         'annee' => $year
                                     ]);    
 
-                                    session()->flash('message', 'Production créée avec succès');
+                                    session()->flash('message', 'Successful operation');
                                     return redirect()->route('production.index');
 
                                 }else{
-                                    session()->flash('message_err', 'Erreur: La production n\'a pas été créée');
+                                    session()->flash('message_err', 'Error: Operation failed');
                                     return redirect()->route('production.create'); 
                                 }
                             }else{
-                                session()->flash('message_err', 'Erreur: La production n\'a pas été créée');
+                                session()->flash('message_err', 'Error: Operation failed');
                                 return redirect()->route('production.create'); 
                             }
 
@@ -170,17 +170,17 @@ class ProductionController extends Controller
                             $update_production = ProductionProvisoire::where('emballage_quantity', '>', $emballage_quantity)->delete();
                             //$update_production->delete();   
 
-                            session()->flash('message_err', 'Erreur: La quantité d\'emballages est indisponible');
+                            session()->flash('message_err', 'Error: Not enaugh quantity');
                             return redirect()->route('production.create');   
                         }
                     }
                 }else{
-                    session()->flash('message_err', 'La quantité de la matière doit être supérieur à 0');
+                    session()->flash('message_err', 'The quantity of material must be greater than 0');
                     return redirect()->route('production.create');
                 }
 
             }else{
-                session()->flash('message_err', 'La quantité doit être supérieur à 0');
+                session()->flash('message_err', 'The quantity must be greater than 0');
                 return redirect()->route('production.create');
             }
        
@@ -302,7 +302,7 @@ class ProductionController extends Controller
         //delete prodction lastly
         $production->delete();
 
-        session()->flash('message', 'Production supprimiée avec succès');
+        session()->flash('message', 'Successful operation');
         return redirect()->route('production.index');
     }
 
@@ -373,15 +373,15 @@ class ProductionController extends Controller
                     $cout_productions = CoutProduction::where('production_number', $production_number)
                                                         ->update(['montant' => $cout_production]);
                     
-                    session()->flash('message', 'Matière première attribuée avec succès');
+                    session()->flash('message', 'Suceessful operation');
                     return redirect()->back(); 
                 }else{
-                    session()->flash('message_err', 'Erreur: Matière première n\'a pas été attribuée');
+                    session()->flash('message_err', 'Error: Operation failed');
                     return redirect()->back(); 
                 }
 
             }else{
-                session()->flash('message_err', 'Quantité de matière première indisponible');
+                session()->flash('message_err', 'Error: Not enaugh quantity');
                 return redirect()->back(); 
             }
 

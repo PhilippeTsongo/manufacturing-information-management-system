@@ -51,7 +51,7 @@ class OperationController extends Controller
         ]);
 
         if($operation){
-            session()->flash('message', 'Operation créée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('operation.index');
         }
         
@@ -88,7 +88,7 @@ class OperationController extends Controller
         ]);
 
         if($operation){
-            session()->flash('message', 'Operation créée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('operation.index');
         }
     }
@@ -96,7 +96,7 @@ class OperationController extends Controller
     public function destroy(Operation $operation)
     {
         $operation->delete();   
-        session()->flash('message', 'Operation supprimmée avec succès');
+        session()->flash('message', 'Successful operation');
         return redirect()->route('operation.index');
     }
 }

@@ -40,7 +40,7 @@ class UnitController extends Controller
         ]);
 
         if($unit){
-            session()->flash('message', 'Unité créée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect(route('unit.index'));
         }
         
@@ -71,7 +71,7 @@ class UnitController extends Controller
         ]);
 
         if($unit){
-            session()->flash('message', 'Unité modifiée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('unit.index');
         }    
     }
@@ -80,7 +80,7 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         $unit->delete();
-        session()->flash('message', "Unité supprimée avec succès");
+        session()->flash('message', "Successful operation");
         return redirect()->route('unit.index');
     }
 

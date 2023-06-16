@@ -44,7 +44,7 @@ class BilanClassementController extends Controller
         ]);
 
         if($bilan_classement){
-            session()->flash('message', 'Classement du Bilan crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('bilan_classement.index');
         }
     }
@@ -76,7 +76,7 @@ class BilanClassementController extends Controller
         ]);
 
         if($bilan_classement){
-            session()->flash('message', 'Classement du Bilan Modifié avec succès');
+            session()->flash('message', 'Successul operation');
             return redirect()->route('bilan_classement.index');
         }
     }
@@ -87,7 +87,7 @@ class BilanClassementController extends Controller
         $bilan_classement->delete();
         
         if($bilan_classement){
-            session()->flash('message', 'Classement du Bilan Supprimé avec succès');
+            session()->flash('message', 'Deleted successfully');
             return redirect()->route('bilan_classement.index');
         }
     }

@@ -44,14 +44,13 @@ class TypeEmballageController extends Controller
             ]);
 
             if($type_emballage){
-                session()->flash('message', 'Type d\'emballage crée avec succès');
+                session()->flash('message', 'Successful operation');
                 return redirect(route('type_emballage.index'));
             }
         }else{
-            session()->flash('message_err', 'L\'enregistrement n\'a pas été fait avec succès');
+            session()->flash('message_err', 'Operation failed');
             return redirect(route('type_emballage.create'));   
-        }
-        
+        }     
     }
 
    
@@ -84,11 +83,11 @@ class TypeEmballageController extends Controller
             ]);
 
             if($type_emballage){
-                session()->flash('message', 'Type d\'emballage crée avec succès');
+                session()->flash('message', 'Successful operation');
                 return redirect(route('type_emballage.index'));
             }
         }else{
-            session()->flash('message_err', 'L\'enregistrement n\'a pas été fait avec succès');
+            session()->flash('message_err', 'Operation failed');
             return redirect(route('type_emballage.create'));   
         }
     }
@@ -97,7 +96,7 @@ class TypeEmballageController extends Controller
     public function destroy(TypeEmballage $type_emballage)
     {
         $type_emballage->delete();
-        session()->flash('message', "Type  d\'emballage supprimé avec succès");
+        session()->flash('message', "Successful operation");
         return redirect()->route('type_emballage.index');
     }
 }

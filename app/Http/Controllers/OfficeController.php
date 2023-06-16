@@ -45,10 +45,10 @@ class OfficeController extends Controller
         ]);
 
         if($office){
-            session()->flash('message', 'Bureau crée avec succès');
+            session()->flash('message', 'Office created successfilly');
             return redirect()->route('office.index');
         }else{
-            session()->flash('message_err', 'L\'enregistrement n\'pas été effectuée');
+            session()->flash('message_err', 'operation failed');
             return redirect()->route('office.index');
         }
     }     
@@ -83,10 +83,10 @@ class OfficeController extends Controller
         ]);
         
         if($office){
-            session()->flash('message', 'Bureau Modifié avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('office.index'); 
         }else{
-            session()->flash('message_err', 'La modification n\'pas été effectuée');
+            session()->flash('message_err', 'Operation failed');
             return redirect()->route('office.index');
         }
               
@@ -95,7 +95,7 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         $office->delete();   
-        session()->flash('message', 'Bureau supprimmé avec succès');
+        session()->flash('message', 'Operation successful');
         return redirect()->route('office.index');
     }
 

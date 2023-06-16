@@ -179,7 +179,7 @@ class SearchController extends Controller
 
                 return view('search.search', compact('data'));
             }else{
-                session()->flash('message_err', 'Erreur: Pas de résultat');
+                session()->flash('message_err', 'Error: no data');
                 return redirect()->back();
             }
          

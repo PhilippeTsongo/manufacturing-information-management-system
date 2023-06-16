@@ -106,28 +106,28 @@ class JournalRapportController extends Controller
                 $this->address->cell('50', '5', "NUMERO IMPOT: A2219998 ", '0', '1');
                 $this->address->cell('50', '5', "EMAIL: businessskanabe@gmail.com", '0', '1');
                 $this->address->cell('50', '5', "TELEPHONE: (+243) 991 614 358 /(+243) 828 660 055", '0', '1');
-                $this->address->cell('50', '5', "ADRESSE: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
+                $this->address->cell('50', '5', "ADRESS: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
 
                 $this->address->cell('50', '9', "DATE: " . date('d-m-Y'), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
                 
 
-                $this->address->cell('50', '5', "ECRITURES COMPTABLE DU MOIS DE " . strtoupper($month), '0', '1');
+                $this->address->cell('50', '5', "ACCOUNTING JOURNAL OF " . strtoupper($month), '0', '1');
             
                 //devider
                 $this->address->cell('50', '5', "", '0', '1');
 
                 $this->address->cell('50', '3', "", '0', '1');
-                $this->address->cell('50', '9', utf8_decode("Achat"), '0', '1');
+                $this->address->cell('50', '9', utf8_decode("Purchase"), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
 
                 //TITLE
                 $this->title->Cell('22', '7', utf8_decode('Date'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Crédit'), '1', '0', '', TRUE);
-                $this->title->Cell('190', '7', utf8_decode('Libellé'), '1', '0', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Debit'), '1', '0', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Credit'), '1', '0', '', TRUE);
+                $this->title->Cell('190', '7', utf8_decode('Libelle'), '1', '0', '', TRUE);
                 $this->title->Cell('20', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Crédit'), '1', '1', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Credit'), '1', '1', '', TRUE);
 
 
                 //ACHAT MATIERES
@@ -174,16 +174,16 @@ class JournalRapportController extends Controller
 
                 
                 $this->address->cell('50', '3', "", '0', '1');
-                $this->address->cell('50', '9', utf8_decode("Ventes"), '0', '1');
+                $this->address->cell('50', '9', utf8_decode("Sales"), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
 
                 //TITLE
                 $this->title->Cell('22', '7', utf8_decode('Date'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Crédit'), '1', '0', '', TRUE);
-                $this->title->Cell('190', '7', utf8_decode('Libellé'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Crédit'), '1', '1', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Debit'), '1', '0', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Credit'), '1', '0', '', TRUE);
+                $this->title->Cell('190', '7', utf8_decode('Libelle'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Debit'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Credit'), '1', '1', '', TRUE);
 
                 foreach($sales as $sale){
                     foreach($sale_operations as $sale_operation){
@@ -212,11 +212,11 @@ class JournalRapportController extends Controller
 
                 //TITLE
                 $this->title->Cell('22', '7', utf8_decode('Date'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('12', '7', utf8_decode('Crédit'), '1', '0', '', TRUE);
-                $this->title->Cell('190', '7', utf8_decode('Libellé'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Débit'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Crédit'), '1', '1', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Debit'), '1', '0', '', TRUE);
+                $this->title->Cell('12', '7', utf8_decode('Credit'), '1', '0', '', TRUE);
+                $this->title->Cell('190', '7', utf8_decode('Libelle'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Debit'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Credit'), '1', '1', '', TRUE);
                 
                 foreach($charges as $charge){
                     foreach($charge_operations as $charge_operation){
@@ -244,7 +244,7 @@ class JournalRapportController extends Controller
         
 
         }else{
-            session()->flash('message_err', 'Vous devez choisir le mois');
+            session()->flash('message_err', 'You must select the month');
             return redirect()->back();   
         }
 

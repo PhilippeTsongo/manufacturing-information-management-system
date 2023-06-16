@@ -47,10 +47,10 @@ class ClientController extends Controller
                 'client_number' => $client_number
             ]);
                     
-            session()->flash('message', 'Client crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('client.index');
         }else{
-            session()->flash('message_err', 'Le numéro de télephone ne doit pas avoir des lettres ou des signes');
+            session()->flash('message_err', 'The phone number should have only digits');
             return redirect()->route('client.create');
         }
 
@@ -92,10 +92,10 @@ class ClientController extends Controller
                 'client_number' => $client_number
             ]);
 
-            session()->flash('message', 'Client Modifié avec succès');
+            session()->flash('message', 'Updated successfully');
             return redirect()->route('client.index');  
         }else{
-            session()->flash('message_err', 'Le numéro de télephone ne doit pas avoir des lettres ou des signes');
+            session()->flash('message_err', 'The phone number should have only digits');
             return redirect()->route('client.create');
         }       
     }
@@ -108,7 +108,7 @@ class ClientController extends Controller
         }
 
         $client->delete();   
-        session()->flash('message', 'Client supprimmé avec succès');
+        session()->flash('message', 'Deleted successfully');
         return redirect()->route('client.index');
     }
 }

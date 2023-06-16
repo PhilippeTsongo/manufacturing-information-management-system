@@ -60,7 +60,7 @@ class BilanConfigController extends Controller
         ]);
 
         if($bilan_config){
-            session()->flash('message', 'Element du Bilan crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('bilan_config.index');
         }
     }
@@ -105,7 +105,7 @@ class BilanConfigController extends Controller
         ]);
 
         if($update){
-            session()->flash('message', 'Element du Bilan Modifié avec succès');
+            session()->flash('message', 'Successful');
             return redirect()->route('bilan_config.index');
         }
     }

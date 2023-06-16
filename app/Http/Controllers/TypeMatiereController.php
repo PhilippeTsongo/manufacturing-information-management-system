@@ -39,7 +39,7 @@ class TypeMatiereController extends Controller
         ]);
 
         if($type_matiere){
-            session()->flash('message', 'Type de Matières premières crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect(route('type_matiere.index'));
         }
         
@@ -70,7 +70,7 @@ class TypeMatiereController extends Controller
         ]);
 
         if($type_matiere){
-            session()->flash('message', 'Type de la Matière modifié avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('type_matiere.index');
         }    
     }
@@ -79,7 +79,7 @@ class TypeMatiereController extends Controller
     public function destroy(TypeMatiere $type_matiere)
     {
         $type_matiere->delete();
-        session()->flash('message', "Type de la Matière supprimé avec succès");
+        session()->flash('message', "Successful operation");
         return redirect()->route('type_matiere.index');
     }
 

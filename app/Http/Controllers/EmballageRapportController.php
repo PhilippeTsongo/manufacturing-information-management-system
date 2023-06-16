@@ -63,21 +63,21 @@ class EmballageRapportController extends Controller
                 $this->address->cell('50', '5', "NUMERO IMPOT: A2219998 ", '0', '1');
                 $this->address->cell('50', '5', "EMAIL: businessskanabe@gmail.com", '0', '1');
                 $this->address->cell('50', '5', "TELEPHONE: (+243) 991 614 358 /(+243) 828 660 055", '0', '1');
-                $this->address->cell('50', '5', "ADRESSE: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
+                $this->address->cell('50', '5', "ADRESS: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
 
                 $this->address->cell('50', '9', "DATE: " . date('d-m-Y'), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
                 
-                $this->address->cell('50', '5', "LISTE D'EMBALLAGES DU MOIS DE " . strtoupper($month), '0', '1');
+                $this->address->cell('50', '5', "LIST OF PACKAGING OF " . strtoupper($month), '0', '1');
             
                 //devider
                 $this->address->cell('50', '5', "", '0', '1');
 
                 //TITLE
-                $this->title->Cell('24', '7', utf8_decode('Nom'), '1', '0', '', TRUE);
+                $this->title->Cell('24', '7', utf8_decode('Name'), '1', '0', '', TRUE);
                 $this->title->Cell('70', '7', utf8_decode('Type'), '1', '0', '', TRUE);
-                $this->title->Cell('25', '7', utf8_decode('Qté'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Unité'), '1', '0', '', TRUE);
+                $this->title->Cell('25', '7', utf8_decode('QtY'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Unit'), '1', '0', '', TRUE);
                 $this->title->Cell('25', '7', 'P.U', '1', '0', '', TRUE);
                 $this->title->Cell('25', '7', 'Prix Total', '1', '1', '', TRUE);
 
@@ -107,12 +107,10 @@ class EmballageRapportController extends Controller
                 //OUTPUT 
                 $this->fpdf->Output();
 
-                exit;
-
-        
+                exit;        
 
         }else{
-            session()->flash('message_err', 'Vous devez choisir le mois');
+            session()->flash('message_err', 'You must select the month');
             return redirect()->back();   
         }
 

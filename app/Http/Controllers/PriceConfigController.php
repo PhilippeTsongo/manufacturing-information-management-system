@@ -48,12 +48,12 @@ class PriceConfigController extends Controller
             ]);
 
             if($PriceConfig){
-                session()->flash('message', 'Prix de réduction crée avec succès');
+                session()->flash('message', 'Successful operation');
                 return redirect(route('price_config.index'));
             }
             
         }else{
-            session()->flash('message_err', 'La quantité doit être supérieur ou égale à 0');
+            session()->flash('message_err', 'The quantity must be greater than 0');
             return redirect()->route('price_config.create');
         }
     }
@@ -93,12 +93,12 @@ class PriceConfigController extends Controller
             ]);
 
             if($price_config){
-                session()->flash('message', 'Prix de réduction Modifé avec succès');
+                session()->flash('message', 'Successful operation');
                 return redirect(route('price_config.index'));
             }
             
         }else{
-            session()->flash('message_err', 'La quantité doit être supérieur à 0');
+            session()->flash('message_err', 'The quantity must be greater than 0');
             return redirect()->back();
         }
     }
@@ -111,10 +111,10 @@ class PriceConfigController extends Controller
 
         if($price_config)
         {
-            session()->flash('message', "Prix de réduction supprimé avec succès");
+            session()->flash('message', "Successful operation");
             return redirect()->route('price_config.index');
         }else{
-            session()->flash('message_err', "Prix de réduction n'a pas été supprimé avec succès");
+            session()->flash('message_err', "Operationa Failed");
             return redirect()->route('price_config.index');
         }
     }

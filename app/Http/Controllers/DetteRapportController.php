@@ -72,7 +72,7 @@ class DetteRapportController extends Controller
                 $this->address->cell('50', '3', "", '0', '1');
                 
 
-                $this->address->cell('50', '5', "LISTE DE DETTES DU MOIS DE " . strtoupper($month), '0', '1');
+                $this->address->cell('50', '5', "DEBTS LIST OF " . strtoupper($month), '0', '1');
             
                 //devider
                 $this->address->cell('50', '5', "", '0', '1');
@@ -81,11 +81,11 @@ class DetteRapportController extends Controller
                 $this->title->Cell('22', '7', utf8_decode('Date'), '1', '0', '', TRUE);
                 $this->title->Cell('35', '7', utf8_decode('Client'), '1', '0', '', TRUE);
                 $this->title->Cell('22', '7', utf8_decode('Montant'), '1', '0', '', TRUE);
-                $this->title->Cell('22', '7', utf8_decode('Payé'), '1', '0', '', TRUE);
-                $this->title->Cell('22', '7', utf8_decode('Reste'), '1', '0', '', TRUE);
+                $this->title->Cell('22', '7', utf8_decode('Payed'), '1', '0', '', TRUE);
+                $this->title->Cell('22', '7', utf8_decode('Due'), '1', '0', '', TRUE);
                 $this->title->Cell('55', '7', utf8_decode('Produit'), '1', '0', '', TRUE);
 
-                $this->title->Cell('98', '7', utf8_decode('Déscription'), '1', '1', '', TRUE);
+                $this->title->Cell('98', '7', utf8_decode('Description'), '1', '1', '', TRUE);
 
                 //CONTENT
                 $this->total = 0;
@@ -138,7 +138,7 @@ class DetteRapportController extends Controller
         
 
         }else{
-            session()->flash('message_err', 'Vous devez choisir le mois');
+            session()->flash('message_err', 'You must select the month');
             return redirect()->back();   
         }
 

@@ -96,15 +96,15 @@ class DetteController extends Controller
                                                 'quantity' => $rest_quantity
                                             ]);
 
-                    session()->flash('message', 'Dette enregistrée avec succès');
+                    session()->flash('message', 'Successfully deleted');
                     return redirect()->route('dette.index');
                 }
             }else{
-                session()->flash('message_err', 'Le montant doit être superieur à 0');
+                session()->flash('message_err', 'The amount should be greater than 0');
                 return redirect()->route('dette.create');
             }
         }else{
-            session()->flash('message_err', 'Quantité indisponible');
+            session()->flash('message_err', 'Not enough quantity');
             return redirect()->route('dette.create');
         }
         
@@ -201,7 +201,7 @@ class DetteController extends Controller
         //if($dette_recette_recover){ $dette_recette_recover->delete(); }
 
         $dette->delete();
-        session()->flash('message', 'Dette suprimée avec succès');
+        session()->flash('message', 'Successfully deleted');
         return redirect()->route('dette.index');
     }
 
@@ -245,7 +245,7 @@ class DetteController extends Controller
 
                         //dd($recettes['0']);
 
-                        session()->flash('message', 'Dette payée avec succès');
+                        session()->flash('message', 'Successful operation');
                         return redirect()->route('dette.index');
                     }else{
                         $autre_recette = AutreRecette::create([
@@ -257,12 +257,12 @@ class DetteController extends Controller
                             'annee' => $year,
                             'description' => $request->description,
                         ]);
-                        session()->flash('message', 'Dette payée avec succès');
+                        session()->flash('message', 'Successful operation');
                         return redirect()->route('dette.index');
                     }
                 }
         }else{
-            session()->flash('message_err', 'le montant à payer doit être inferieur ou égal au montant dû');
+            session()->flash('message_err', 'The amount should not be greater the the due amount');
             return redirect()->route('dette_pay_create', $request->id);
         }
         return view ('dette.pay');

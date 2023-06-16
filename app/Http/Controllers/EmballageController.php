@@ -84,13 +84,13 @@ class EmballageController extends Controller
                 ]);
 
                 if($emballage && $emballage_comptable){
-                    session()->flash('message', 'Emballage crée avec succès');
+                    session()->flash('message', 'Successful operation');
                     return redirect(route('emballage.index'));
                 }
             
            
         }else{
-            session()->flash('message', 'La quantité doit être supérieur à 0');
+            session()->flash('message', 'The quantity must be greater than 0');
             return redirect()->route('emballage.create');
         }
     }
@@ -156,7 +156,7 @@ class EmballageController extends Controller
             
            
         }else{
-            session()->flash('message_err', 'La quantité doit être supérieur à 0');
+            session()->flash('message_err', 'The quantity must be greater than 0');
             return redirect()->route('emballage.index');
         }
     }
@@ -174,7 +174,7 @@ class EmballageController extends Controller
             // return redirect()->route('emballage.index');    
         
         $emballage->delete();
-        session()->flash('message', "Emballage supprimé avec succès");
+        session()->flash('message', "Deleted successfully");
         return redirect()->route('emballage.index');
     }
 }

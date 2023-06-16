@@ -80,12 +80,12 @@ class MatiereController extends Controller
                 ]);
 
                 if($matiere && $matiere_comptable ){
-                    session()->flash('message', 'Matières premières créées avec succès');
+                    session()->flash('message', 'Successful operation');
                     return redirect(route('matiere.index'));
                 }
             
         }else{
-            session()->flash('message', 'La quantité doit être supérieur à 0');
+            session()->flash('message', 'The quantity must be greater than 0');
             return redirect()->route('matiere.create');
         }
     }
@@ -144,13 +144,13 @@ class MatiereController extends Controller
                                                     ]);
 
                 if($matiere && $matiere_comptable){
-                    session()->flash('message', 'Matière modifiée avec succès');
+                    session()->flash('message', 'Edited successful');
                     return redirect()->route('matiere.index');
                 }
 
                            
         }else{
-            session()->flash('message_err', 'La quantité doit être supérieur à 0');
+            session()->flash('message_err', 'The quantity must be greater than 0');
             return redirect()->route('matiere.index');
         }
     }

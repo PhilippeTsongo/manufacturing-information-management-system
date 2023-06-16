@@ -69,16 +69,16 @@ class EmballageCasseController extends Controller
                 ]);
 
                 if($emballage_casse &&  $emballage_update){
-                    session()->flash('message', 'Emballage cassé crée avec succès');
+                    session()->flash('message', 'Successful operation');
                     return redirect(route('emballage_casse.index'));
                 }
             }else{
-                session()->flash('message_err', 'La quantité est indisponible');
+                session()->flash('message_err', 'Not enaugh quantity');
                 return redirect()->route('emballage_casse.create');
             }
 
         }else{
-            session()->flash('message', 'La quantité doit être supérieur à 0');
+            session()->flash('message', 'quantity must be greater than 0');
             return redirect()->route('emballage_casse.create');
         }
     }
@@ -112,11 +112,11 @@ class EmballageCasseController extends Controller
             ]);
 
             $emballage_casse->delete();
-            session()->flash('message', "Emballage cassé supprimé avec succès");
+            session()->flash('message', "Successfully deleted");
             return redirect()->route('emballage_casse.index');
         
         }else{
-            session()->flash('message', "L'emballage cassé n'a pas été supprimé avec succès");
+            session()->flash('message', "Operation failed");
             return redirect()->route('emballage_casse.index');
         }
     }

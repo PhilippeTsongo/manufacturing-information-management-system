@@ -149,7 +149,7 @@ class RecetteRapportController extends Controller
 
 
                  $this->title->Cell('20', '3', '', '0', '1', '');
-                 $this->title->Cell('164', '7', utf8_decode('TOTAL GENERAL'), '0', '0', '');
+                 $this->title->Cell('164', '7', utf8_decode('TOTAL'), '0', '0', '');
                  $this->content->Cell('25', '7', number_format($this->total_recette + $this->total_autre_recette, 02) . '$', '0', '1', '', TRUE);
 
                 //OUTPUT 
@@ -160,7 +160,7 @@ class RecetteRapportController extends Controller
         
 
         }else{
-            session()->flash('message_err', 'Vous devez choisir le mois');
+            session()->flash('message_err', 'You must select the month');
             return redirect()->back();   
         }
 

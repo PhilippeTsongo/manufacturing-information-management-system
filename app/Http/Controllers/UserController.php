@@ -68,15 +68,15 @@ class UserController extends Controller
                 ]);
 
                 if($user){
-                    session()->flash('message', 'Utilisateur crée avec succès');
+                    session()->flash('message', 'User created successfully');
                     return redirect(route('users.index'));
                 }
             }else{
-                session()->flash('message_err', 'Vous devez choisir une image pour cette utilisateur');
+                session()->flash('message_err', 'You must select an image for this user');
                 return redirect()->route('users.create');
             }
         }else{
-            session()->flash('message_err', 'les mots de passes doivent être égaux');
+            session()->flash('message_err', 'The password must match');
             return redirect()->route('users.create');
         }
     }
@@ -120,11 +120,11 @@ class UserController extends Controller
             ]);
 
             if($user){
-                session()->flash('message', 'Utilistaeur modifié avec succès');
+                session()->flash('message', 'User edited successfully');
                 return redirect()->route('users.index');
             }
         }else{
-            session()->flash('message_err', 'le mot de passe ne correspond pas au mot de passe de confirmation');
+            session()->flash('message_err', 'The password must match');
             return redirect()->route('users.index');
         }
     }
@@ -133,7 +133,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        session()->flash('message', "L'utilisateur supprimé avec succès");
+        session()->flash('message', "User deleted successfully");
         return redirect()->route('users.index');
     }
 }

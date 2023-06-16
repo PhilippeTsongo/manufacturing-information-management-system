@@ -38,7 +38,7 @@ class AccountTypeController extends Controller
         ]);
 
         if($account_type){
-            session()->flash('message', 'Type de compte crée avec succès');
+            session()->flash('message', 'Account type created successfully');
             return redirect()->route('account_type.index');
         }
        
@@ -75,7 +75,7 @@ class AccountTypeController extends Controller
         ]);
 
         if($account_type){
-            session()->flash('message', 'Type de compte modifié avec succès');
+            session()->flash('message', 'Account Type edited successfully');
             return redirect()->route('account_type.index');
         }
         
@@ -84,7 +84,7 @@ class AccountTypeController extends Controller
     public function destroy(AccountType $account_type)
     {
         $account_type->delete();   
-        session()->flash('message', 'Type de compte supprimmé avec succès');
+        session()->flash('message', 'Account type deleted successfully');
         return redirect()->route('account_type.index');
     }
 }

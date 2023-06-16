@@ -71,7 +71,7 @@ class SortieController extends Controller
             'annee' => $year
         ]);
                 
-        session()->flash('message', 'Sortie créée avec succès');
+        session()->flash('message', 'Successful operation');
         return redirect()->route('sortie.index');
 
             
@@ -116,9 +116,8 @@ class SortieController extends Controller
 
             ]);
 
-            session()->flash('message', 'Sortie modifiée avec succès');
+            session()->flash('message', 'Successful Operation');
             return redirect()->route('sortie.index'); 
-
                    
     }
 
@@ -126,7 +125,7 @@ class SortieController extends Controller
     public function destroy(Sortie $sortie)
     {
         $sortie->delete();
-        session()->flash('message', 'La Sortie a été supprimée avec succès');
+        session()->flash('message', 'Successful operation');
         return redirect()->route('sortie.index');
     }
 }

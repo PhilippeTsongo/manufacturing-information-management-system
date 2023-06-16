@@ -57,22 +57,22 @@ class LogistiqueRapportController extends Controller
                 $this->address->cell('50', '5', "NUMERO IMPOT: A2219998 ", '0', '1');
                 $this->address->cell('50', '5', "EMAIL: businessskanabe@gmail.com", '0', '1');
                 $this->address->cell('50', '5', "TELEPHONE: (+243) 991 614 358 /(+243) 828 660 055", '0', '1');
-                $this->address->cell('50', '5', "ADRESSE: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
+                $this->address->cell('50', '5', "ADRESS: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
 
                 $this->address->cell('50', '9', "DATE: " . date('d-m-Y'), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
                 
 
-                $this->address->cell('50', '5', "LISTE DE LOGISTIQUES", '0', '1');
+                $this->address->cell('50', '5', "LIST OF LOGISTICS", '0', '1');
             
                 //devider
                 $this->address->cell('50', '5', "", '0', '1');
 
                 //TITLE
-                $this->title->Cell('80', '7', utf8_decode('Nom'), '1', '0', '', TRUE);
-                $this->title->Cell('20', '7', utf8_decode('Quantité'), '1', '0', '', TRUE);
-                $this->title->Cell('30', '7', utf8_decode('Unité'), '1', '0', '', TRUE);
-                $this->title->Cell('59', '7', utf8_decode('Bureau'), '1', '1', '', TRUE);
+                $this->title->Cell('80', '7', utf8_decode('Name'), '1', '0', '', TRUE);
+                $this->title->Cell('20', '7', utf8_decode('Quntity'), '1', '0', '', TRUE);
+                $this->title->Cell('30', '7', utf8_decode('Unit'), '1', '0', '', TRUE);
+                $this->title->Cell('59', '7', utf8_decode('Office'), '1', '1', '', TRUE);
 
                 //CONTENT
                 foreach($logistiques as $logistique){

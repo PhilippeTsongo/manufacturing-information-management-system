@@ -58,18 +58,18 @@ class LogistiqueController extends Controller
                 ]);
 
                 if($logistique){
-                    session()->flash('message', 'Logistique créée avec succès');
+                    session()->flash('message', 'Successfulu operation');
                     return redirect()->route('logistique.index');
                 }else{
-                    session()->flash('message_err', 'L\'enregistrement n\'pas été effectué');
+                    session()->flash('message_err', 'Operation failed');
                     return redirect()->route('logistique.index');
                 }
             }else{
-                session()->flash('message_err', 'La quantité doit être supérieur à 0');
+                session()->flash('message_err', 'The quantity must be greater than 0');
                 return redirect()->route('logistique.index');
             }
         }else{
-            session()->flash('message_err', 'Le prix d\'achat doit être supérieur à 0');
+            session()->flash('message_err', 'The purchase price should be greater than 0');
             return redirect()->route('logistique.index');
         }
     }     
@@ -115,18 +115,18 @@ class LogistiqueController extends Controller
                 ]);
 
                 if($logistique){
-                    session()->flash('message', 'Logistique créée avec succès');
+                    session()->flash('message', 'Successful operation');
                     return redirect()->route('logistique.index');
                 }else{
-                    session()->flash('message_err', 'L\'enregistrement n\'pas été effectué');
+                    session()->flash('message_err', 'Operation failed');
                     return redirect()->route('logistique.index');
                 }
             }else{
-                session()->flash('message_err', 'La quantité doit être supérieur à 0');
+                session()->flash('message_err', 'The quantity must be greater than 0');
                 return redirect()->route('logistique.index');
             }
         }else{
-            session()->flash('message_err', 'Le prix d\'achat doit être supérieur à 0');
+            session()->flash('message_err', 'The purchase price must be greater than 0');
             return redirect()->route('logistique.index');
         }
               
@@ -135,7 +135,7 @@ class LogistiqueController extends Controller
     public function destroy(logistique $logistique)
     {
         $logistique->delete();   
-        session()->flash('message', 'Logistique supprimmée avec succès');
+        session()->flash('message', 'Successfully Deleted');
         return redirect()->route('logistique.index');
     }
 

@@ -121,20 +121,20 @@ class SaleController extends Controller
                                                     ->update(['quantity' => $remaining_stock ]);
                                 
                                          
-                                    session()->flash('message', 'Production ' .$request->number . ' sans réduction vendue avec succès');                                
+                                    session()->flash('message', 'Production ' .$request->number . ' sold successfully');                                
                                     return redirect()->route('sale.index'); 
                                 }                    
                         }else{
-                            session()->flash('message_err', 'Erreur: Quantité indisponible');
+                            session()->flash('message_err', 'Error: Not enaugh quantity');
                             return redirect()->route('production.search');
                         }
                     }else{
-                        session()->flash('message_err', 'Erreur: Le prix de vente n\'a pas encore été enregistré');
+                        session()->flash('message_err', 'Error: The selling price has not yet been registered');
                         return redirect()->route('production.search');
                     }
                 }
             }else{
-                session()->flash('message_err', 'Erreur: Le prix de vente n\'a pas encore été enregistré');
+                session()->flash('message_err', 'Error: The selling price has not yet been registered');
                 return redirect()->route('production.search');
             }
         }
@@ -163,7 +163,7 @@ class SaleController extends Controller
         
         $sale->delete();
 
-        session()->flash('message', 'La vente a été supprimée avec succès');
+        session()->flash('message', 'Sale deleted successfully');
         return redirect()->route('sale.index');
     }
 

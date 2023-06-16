@@ -65,13 +65,13 @@ class SortieRapportController extends Controller
                 $this->address->cell('50', '5', "NUMERO IMPOT: A2219998 ", '0', '1');
                 $this->address->cell('50', '5', "EMAIL: businessskanabe@gmail.com", '0', '1');
                 $this->address->cell('50', '5', "TELEPHONE: (+243) 991 614 358 /(+243) 828 660 055", '0', '1');
-                $this->address->cell('50', '5', "ADRESSE: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
+                $this->address->cell('50', '5', "ADRESS: 01 Av Accasias, Q. Les Volcans, Goma", '0', '1');
 
                 $this->address->cell('50', '9', "DATE: " . date('d-m-Y'), '0', '1');
                 $this->address->cell('50', '3', "", '0', '1');
                 
 
-                $this->address->cell('50', '5', "LISTE DE SORTIES DU MOIS DE " . strtoupper($month), '0', '1');
+                $this->address->cell('50', '5', "LIST OF EXPENSES OF THE MONTH " . strtoupper($month), '0', '1');
             
                 //devider
                 $this->address->cell('50', '5', "", '0', '1');
@@ -107,7 +107,7 @@ class SortieRapportController extends Controller
         
 
         }else{
-            session()->flash('message_err', 'Vous devez choisir le mois');
+            session()->flash('message_err', 'You must select a month');
             return redirect()->back();   
         }
 

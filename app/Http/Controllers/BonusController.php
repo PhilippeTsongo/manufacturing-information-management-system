@@ -105,16 +105,16 @@ class BonusController extends Controller
                                     ->where('id', $request->production_id)
                                     ->update(['quantity' => $remaining_stock ]);
                                     
-                session()->flash('message', 'Bonus accordé au client avec succès');                                
+                session()->flash('message', 'Successful operation');                                
                 return redirect()->route('bonus.index');  
                 
             }else{
-                session()->flash('message_err', 'Erreur: Le Bonus n\'a pas été accordé');                                
+                session()->flash('message_err', 'Error: Operation failed');                                
                 return redirect()->route('bonus.search');
             }                  
 
         }else{
-            session()->flash('message_err', 'Erreur: Quantité indisponible');
+            session()->flash('message_err', 'Erreur: Not enough quantity');
             return redirect()->route('bonus.search');
         }
     }
@@ -149,7 +149,7 @@ class BonusController extends Controller
         
         $bonu->delete();
 
-        session()->flash('message', 'Le Bonus a été supprimé avec succès');
+        session()->flash('message', 'Deleted successfully');
         return redirect()->route('bonus.index');
     }
 }

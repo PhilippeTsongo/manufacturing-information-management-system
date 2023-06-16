@@ -39,7 +39,7 @@ class CategoryController extends Controller
         ]);
 
         if($category){
-            session()->flash('message', 'Catégorie crée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect(route('category.index'));
         }
         
@@ -70,7 +70,7 @@ class CategoryController extends Controller
         ]);
 
         if($category){
-            session()->flash('message', 'Catégorie modifiée avec succès');
+            session()->flash('message', 'Successful operation');
             return redirect()->route('category.index');
         }    
     }
@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        session()->flash('message', "Catégorie supprimée avec succès");
+        session()->flash('message', "Deleted Successfully");
         return redirect()->route('category.index');
     }
 }

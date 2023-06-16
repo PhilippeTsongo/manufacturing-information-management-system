@@ -61,11 +61,11 @@ class JustificationController extends Controller
             ]);
     
             if($justification){
-                session()->flash('message', 'Pièce Justificative crée avec succès');
+                session()->flash('message', 'Successful operation');
                 return redirect()->route('justification.index');
             }
         }else{
-            session()->flash('message_err', 'Vous devez choisir une image');
+            session()->flash('message_err', 'You must select a file(jpg, png, pdf)');
             return redirect()->route('justification.create');
         }
     }
@@ -92,10 +92,9 @@ class JustificationController extends Controller
     public function destroy(Justification $justification)
     {
         $justification->delete();
-        session()->flash('message', 'Justification deleted successfully');
+        session()->flash('message', 'file delepted successfully');
         return redirect()->route('justification.index');
     }
-
 
     
 }
