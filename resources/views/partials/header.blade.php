@@ -1,4 +1,5 @@
 <!-- partial:partials/_navbar.html -->
+
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
       <div class="me-3">
@@ -54,21 +55,14 @@
         </li>
 
         <li class="nav-item dropdown d-none d-lg-block">
-          <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">Liste de types d'emballage</a>
+          <select class="form-select changeLang">
+            <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+            <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>France</option>
+            <option value="es" {{ session()->get('locale') == 'es' ? 'selected' : '' }}>Spanish</option>
+          </select>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-            <a class="dropdown-item py-3" >
-              <p class="mb-0 font-weight-medium float-left">Liste de type d'eemballages</p>
-            </a>
-            <div class="dropdown-divider"></div>
-
-            <?php $emballages = DB::table('type_emballages')->get('name') ; ?>
-              @foreach($emballages as $emballage)
-                <a class="dropdown-item preview-item">    
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">{{ $emballage->name }}</p>
-                  </div>
-                </a>
-              @endforeach
+            
+            
           </div>
         </li>
 
@@ -158,4 +152,18 @@
       </button>
     </div>
   </nav>
+
+{{-- change language js --}}
+
+<script src="js/jquery_inc.js"></script>
+
+<script type="text/javascript">  
+  var url = "{{ route('changeLang') }}";
+  $(".changeLang").change(function(){
+
+    // alert('phil');
+      window.location.href = url + "?lang="+ $(this).val();
+  });
+  
+</script>
   <!-- partial -->

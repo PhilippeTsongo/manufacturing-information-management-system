@@ -15,6 +15,12 @@
       {{-- aside --}}
       @include('partials.aside')
 
+      {{-- IMPORTANT VARIABLE --}}
+      <?php
+        //shortlisting app()->getLocal
+        $appLocale = app()->getLocale();  
+      ?>
+
 
       <div class="main-panel">
         <div class="content-wrapper">
@@ -35,7 +41,7 @@
                       <div class="col-sm-12">
                         <div class="statistics-details d-flex align-items-center justify-content-between">
                           <div>
-                            <p class="statistics-title">Matières premières</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Matières premières', $appLocale) }}</p>
                             <h3 class="rate-percentage">@if($matieres) {{ $matieres->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-danger d-flex"><i class="mdi mdi-menu-up"></i>
                               <span>
@@ -50,7 +56,7 @@
                             </p>
                           </div>
                           <div>
-                            <p class="statistics-title">Emballages</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Emballages' , $appLocale)}}</p>
                             <h3 class="rate-percentage">@if($emballages) {{ $emballages->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i>
                               <span>
@@ -65,7 +71,7 @@
                             </p>
                           </div>
                           <div>
-                            <p class="statistics-title">Productions</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Productions', $appLocale)}}</p>
                             <h3 class="rate-percentage">@if($productions) {{ $productions->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-info d-flex"><i class="mdi mdi-menu-up"></i>
                               <span> 
@@ -74,7 +80,7 @@
                             </p>
                           </div>
                           <div class="d-none d-md-block">
-                            <p class="statistics-title">Ventes</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Ventes', $appLocale) }}</p>
                             <h3 class="rate-percentage">@if($sales) {{ $sales->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-primary d-flex"><i class="mdi mdi-menu-up"></i>
                               <span>
@@ -89,7 +95,7 @@
                             </p>
                           </div>
                           <div class="d-none d-md-block">
-                            <p class="statistics-title">Charges Financières</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Charges Financières', $appLocale)}}</p>
                             <h3 class="rate-percentage">@if($sorties) {{ $sorties->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i>
                               <span>
@@ -104,7 +110,7 @@
                             </p>
                           </div>
                           <div class="d-none d-md-block">
-                            <p class="statistics-title">Dettes</p>
+                            <p class="statistics-title">{{ GoogleTranslate::trans('Dettes', $appLocale)}}</p>
                             <h3 class="rate-percentage">@if($dettes) {{ $dettes->count() }} @else {{ 'O' }} @endif</h3>
                             <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i>
                               <span>

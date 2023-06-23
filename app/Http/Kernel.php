@@ -8,6 +8,7 @@ use App\Http\Middleware\isProducer;
 use App\Http\Middleware\isComptable;
 use App\Http\Middleware\isFinancier;
 use App\Http\Middleware\isEntrepreneur;
+use App\Http\Middleware\LanguageMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -42,6 +43,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'GT' => LanguageMiddleware::class,
+
         ],
 
         'api' => [
@@ -74,6 +77,6 @@ class Kernel extends HttpKernel
         'isFinancier' => isFinancier::class,
         'isComptable' => isComptable::class,
         'isProducer' => isProducer::class,
-        'isSeller' => isSeller::class,
+        'isSeller' => isSeller::class
     ];
 }

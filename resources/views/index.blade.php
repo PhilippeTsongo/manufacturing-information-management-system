@@ -30,7 +30,15 @@
   @extends('layouts.app')
   
   @section('content')
-    
+  
+    {{-- IMPORTANT VARIABLE --}}
+
+      <?php
+      //shortlisting app()->getLocal
+      $appLocale = app()->getLocale();  
+    ?>
+
+
   <div class="container-scroller">
     <!-- header   -->
 
@@ -69,9 +77,10 @@
                                 <img class="img-lg rounded-circle mx-auto d-block" src="{{ asset(Auth::user()->image) }}" alt="{{ Auth::user()->name }}"> 
                                 
                                 <hr>
-                                <div class="text-center" >Nom: {{ Auth::user()->name }}</div>
-                                <div class="text-center" >Email: {{ Auth::user()->email }}</div>
-                                <div class="text-center" >Depuis: {{ Auth::user()->created_at->format('d-M-Y') }}</div>
+
+                                <div class="text-center" >{{ GoogleTranslate::trans('Nom:', $appLocale) }}  {{ Auth::user()->name }}</div>
+                                <div class="text-center" >{{ GoogleTranslate::trans('Email:', $appLocale) }} {{ Auth::user()->email }}</div>
+                                <div class="text-center" >{{ GoogleTranslate::trans('Depuis:', $appLocale) }} {{ Auth::user()->created_at->format('d-M-Y') }}</div>
                                 <br>
                                 @if(Auth::user()->userType)  
                                   <div class="text-center">
@@ -118,7 +127,13 @@
     </div>
     <!-- page-body-wrapper ends -->
 
+    
+  
+
+
+
   <!-- plugins:js -->
+
   <script src="../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->

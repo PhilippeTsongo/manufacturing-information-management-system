@@ -69,7 +69,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez un Nouveau Type de Comptes</h4>
+                                        <h4 class="card-title card-title-dash">Register a new account</h4>
                                         <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouveau Type de Comptes</h5>
                                         
                                     </div>

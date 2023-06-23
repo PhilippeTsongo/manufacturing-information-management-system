@@ -1,9 +1,11 @@
 <?php
 
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -54,6 +56,7 @@ use App\Http\Controllers\ProductionRapportController;
 use App\Http\Controllers\RequisitionRapportController;
 use App\Http\Controllers\CoutProductionRapportController;
 use App\Http\Controllers\EmballageCasseRapportController;
+// use App;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +65,13 @@ use App\Http\Controllers\EmballageCasseRapportController;
 */
 
     Route::get('/', function () { 
+
+        // dd($welcomeMessage);
         return view('index');
     })->name('index')->middleware(['auth']);
 
 
+    //optimization and cache clearing
     Route::get('/optimize', function(){
         $exitCode = Artisan::call('optimize');
         return 'DONE';
@@ -76,6 +82,9 @@ use App\Http\Controllers\EmballageCasseRapportController;
         $exitCode = Artisan::call('config:cache');
         return 'DONE';
     });
+
+    //change language
+    Route::get('/change/language', [LangController::class, 'changeLanguage'])->name('changeLang');
 
     //dashboard
     //Route::group(['middleware' => ['auth', 'IsAdmin']], function(){
