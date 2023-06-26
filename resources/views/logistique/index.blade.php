@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -54,14 +60,14 @@
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                        <a target="blank" href="{{ route('rapport.logistique') }}" method="GET" class="dropdown-item">Liste de Matériels (Mobilers)</a>
+                                        <a target="blank" href="{{ route('rapport.logistique') }}" method="GET" class="dropdown-item">{{ GoogleTranslate::trans('Liste de Matériels (Mobilers)', $appLocale)}}</a>
                                     </div>
                                 </div>
-                                <a href="{{ route('logistique.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouveau Matériel</a>
+                                <a href="{{ route('logistique.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau Matériel', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -76,7 +82,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Matériels (Mobilers)</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Matériels (Mobilers)', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -91,14 +97,14 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom du Bien</th>
-                                                <th>Quantité</th>
-                                                <th>Prix d'acaht</th>
-                                                <th>Prix Total</th>
-                                                <th>Bureau</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Prix d\'acaht', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Bureau', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -129,16 +135,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('logistique.edit', ['logistique' => $logistique->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette logistique?');" title="Modifier cette logistique"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier cette logistique?', $appLocale)}}');" title="{{ GoogleTranslate::trans('Modifier cette logistique', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('logistique.destroy', ['logistique' => $logistique->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette logistique?');">
+                                                            <form action="{{ route('logistique.destroy', ['logistique' => $logistique->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette logistique?', $appLocale)}}');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette logistique" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette logistique', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -160,10 +166,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de Logistiques</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de Logistiques', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $logistiques->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

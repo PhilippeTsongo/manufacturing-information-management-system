@@ -30,6 +30,13 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
+    
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,7 +55,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Liste d'opérations</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Liste d\'opérations', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
@@ -69,7 +76,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste d'operations</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste d\'operations', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -114,16 +121,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('operation.edit', ['operation' => $operation->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette operation?');" title="Modifier cette operation"> 
+                                                                onClick="return confirm('Voulez-vous vraiment modifier cette operation?');" title="{{ GoogleTranslate::trans('Modifier cette operation', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('operation.destroy', ['operation' => $operation->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette operation?');">
+                                                            <form action="{{ route('operation.destroy', ['operation' => $operation->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette operation?', $appLocale)}}');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette operation" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette operation', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -145,10 +152,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre d'operations</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre d\'operations', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $operations->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

@@ -30,6 +30,13 @@
   @extends('layouts.app')
   
   @section('content')
+
+    {{-- IMPORTANT VARIABLE --}}
+    <?php
+        //shortlisting app()->getLocal
+        $appLocale = app()->getLocale();  
+    ?>
+   
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +55,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Prix de réduction</a>
+                            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Prix de réduction', $appLocale)}}</a>
                         </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="{{ route('price_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouveau prix de réduction</a>
+                                <a href="{{ route('price_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau prix de réduction', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +76,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste de prix de réduction</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de prix de réduction', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -83,14 +90,14 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Type d'emballage</th>
-                                                <th>Quantité minimum</th>
-                                                <th>Quantité maximum</th>
-                                                <th>Prix de vente unitaire</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Quantité minimum', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Quantité maximum', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Prix de vente unitaire', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -104,10 +111,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $price_reduction->quantity_min . ' bouteilles' }}  
+                                                {{ $price_reduction->quantity_min . ' {{ GoogleTranslate::trans('bouteilles', $appLocale)}} ' }}  
                                             </td>
                                             <td>
-                                                {{ $price_reduction->quantity_max .' bouteilles' }} 
+                                                {{ $price_reduction->quantity_max .' {{ GoogleTranslate::trans('bouteilles', $appLocale)}} ' }} 
                                             </td>
                                             <td>
                                                 <div class="badge badge-opacity-warning">{{ number_format($price_reduction->price, 02) .'$' }}</div>
@@ -120,16 +127,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('price_config.edit', ['price_config' => $price_reduction->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier ce prix de réduction?');" title="Modifier ce prix de réduction"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier ce prix de réduction?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier ce prix de réduction', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('price_config.destroy', ['price_config' => $price_reduction->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce prix de réduction?');">
+                                                            <form action="{{ route('price_config.destroy', ['price_config' => $price_reduction->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce prix de réduction?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez ce prix de réduction" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce prix de réduction', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>

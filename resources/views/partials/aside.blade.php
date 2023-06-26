@@ -1,4 +1,12 @@
 <!-- partial:partials/_settings-panel.html -->
+
+
+{{-- IMPORTANT VARIABLE --}}
+<?php
+  //shortlisting app()->getLocal
+  $appLocale = app()->getLocale();  
+?>
+
 <div class="theme-setting-wrapper">
     <div id="settings-trigger"><i class="ti-settings"></i></div>
     <div id="theme-settings" class="settings-panel">
@@ -180,101 +188,101 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard')}}">
               <i class="mdi mdi-grid-large menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Dashboard', $appLocale)}}</span>
             </a>
           </li>
         @endif
         @if(Auth()->user()->userType->name == 'Administrateur' OR Auth()->user()->userType->name == 'Entrepreneur' OR Auth()->user()->userType->name == 'Producteur' OR Auth()->user()->userType->name == 'Financier')
-          <li class="nav-item nav-category">Stock</li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Stock', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-floor-plan"></i>
-              <span class="menu-title">Stock</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Stock', $appLocale)}}</span>
               <i class="menu-arrow"></i> 
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('matiere.index')}}">Matières premières</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('emballage.index')}}">Emballages</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('emballage_casse.index')}}">Emballages Cassés</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('matiere.index')}}">{{ GoogleTranslate::trans('Matières premières', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('emballage.index')}}">{{ GoogleTranslate::trans('Emballages', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('emballage_casse.index')}}">{{ GoogleTranslate::trans('Emballages Cassés', $appLocale)}}</a></li>
                 
-                <li class="nav-item"> <a class="nav-link" href="{{ route('production.index')}}">Productions</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('product.requisition')}}">Réquisition</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('production.index')}}">{{ GoogleTranslate::trans('Productions', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('product.requisition')}}">{{ GoogleTranslate::trans('Réquisition', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>
 
-          <li class="nav-item nav-category">Catégories et Types</li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Catégories et Types', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#form-element" aria-expanded="false" aria-controls="form-element">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Catégorie</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-element">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{ route('type_matiere.index')}}">Types de Matières</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('category.index')}}">Catégories de Productions</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('type_emballage.index')}}">Catégories d'emballages</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('unit.index')}}">Unités</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('type_matiere.index')}}">{{ GoogleTranslate::trans('Types de Matières', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('category.index')}}">{{ GoogleTranslate::trans('Catégories de Productions', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('type_emballage.index')}}">{{ GoogleTranslate::trans('Catégories d\'emballages', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('unit.index')}}">{{ GoogleTranslate::trans('Unités', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>
         @endif
 
         @if(Auth()->user()->userType->name == 'Administrateur' OR Auth()->user()->userType->name == 'Entrepreneur' OR Auth()->user()->userType->name == 'Vendeur')
-          <li class="nav-item nav-category">Ventes</li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Ventes', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Ventes</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Ventes', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{ route('production.search')}}">Vendre</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('sale.index')}}">Liste de Ventes</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('price_config.index')}}">Liste de Prix de réduction</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('production.search')}}">{{ GoogleTranslate::trans('Vendre', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('sale.index')}}">{{ GoogleTranslate::trans('Liste de Ventes', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('price_config.index')}}">{{ GoogleTranslate::trans('Liste de Prix de réduction', $appLocale)}}</a></li>
                 @if(Auth()->user()->userType->name == 'Vendeur')
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('dette.index') }}">Dettes</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('dette.index') }}">{{ GoogleTranslate::trans('Dettes', $appLocale)}}</a></li>
                 @endif
               </ul>
             </div>
           </li>
 
-          <li class="nav-item nav-category">Clients</li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Clients', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#client-elements" aria-expanded="false" aria-controls="client-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Clients</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Clients', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="client-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{ route('client.index')}}">Liste de Clients</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('bonus.create')}}">Bonus</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('client.index')}}">{{ GoogleTranslate::trans('Liste de Clients', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('bonus.create')}}">{{ GoogleTranslate::trans('Bonus', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>
         @endif
 
         @if(Auth()->user()->userType->name == 'Administrateur' OR Auth()->user()->userType->name == 'Entrepreneur' OR Auth()->user()->userType->name == 'Financier' OR Auth()->user()->userType->name == 'Comptable')
-          <li class="nav-item nav-category">Finance Et Comptabilité </li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Finance Et Comptabilité' , $appLocale)}} </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="menu-icon mdi mdi-layers-outline"></i>
-              <span class="menu-title">Finance</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Finance', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="icons">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('recette.index') }}">Recettes</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('type_recette.index')}}">Type de Recettes</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('sortie.index') }}">Charges</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('cout_production.index') }}">Couts de Productions</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('balance.index') }}">Balance Financière</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('dette.index') }}">Dettes</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('justification.index') }}">Pièces Justificatives</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('recette.index') }}">{{ GoogleTranslate::trans('Recettes', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('type_recette.index')}}">{{ GoogleTranslate::trans('Type de Recettes', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('sortie.index') }}">{{ GoogleTranslate::trans('Charges', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('cout_production.index') }}">{{ GoogleTranslate::trans('Couts de Productions', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('balance.index') }}">{{ GoogleTranslate::trans('Balance Financière', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('dette.index') }}">{{ GoogleTranslate::trans('Dettes', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('justification.index') }}">{{ GoogleTranslate::trans('Pièces Justificatives', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>
@@ -284,20 +292,20 @@
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#compt" aria-expanded="false" aria-controls="compt">
               <i class="menu-icon mdi mdi-layers-outline"></i>
-              <span class="menu-title">Comptabilité</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Comptabilité', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="compt">
               <ul class="nav flex-column sub-menu">
               
-                <li class="nav-item"> <a class="nav-link" href="{{ route('journal.index') }}">Journal</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('grand_livre.index') }}">Grand Livre</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('bilan.index') }}">Bilan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('bilan_config.index') }}">Elaboration du Bilan</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('journal.index') }}">{{ GoogleTranslate::trans('Journal', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('grand_livre.index') }}">{{ GoogleTranslate::trans('Grand Livre', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('bilan.index') }}">{{ GoogleTranslate::trans('Bilan', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('bilan_config.index') }}">{{ GoogleTranslate::trans('Elaboration du Bilan', $appLocale)}}</a></li>
                 {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('bilan_classement.index') }}">Classement du Bilan</a></li> --}}
-                <li class="nav-item"> <a class="nav-link" href="{{ route('plan_comptable.index') }}">Plan Comptable</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('account_type.index') }}">Types de Comptes</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('operation.index') }}">Operations Du Journal</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('plan_comptable.index') }}">{{ GoogleTranslate::trans('Plan Comptable', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('account_type.index') }}">{{ GoogleTranslate::trans('Types de Comptes', $appLocale)}}</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('operation.index') }}">{{ GoogleTranslate::trans('Operations Du Journal', $appLocale)}}</a></li>
                 {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('transaction.index') }}">Transactions</a></li> --}}
                 
               </ul>
@@ -310,28 +318,28 @@
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#office-elements" aria-expanded="false" aria-controls="client-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Bureaux</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Bureaux', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="office-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{{ route('office.index')}}">Liste de Bureaux</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('logistique.index')}}">Liste de Matériels (Mobilers)</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('office.index')}}">{{ GoogleTranslate::trans('Liste de Bureaux', $appLocale)}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('logistique.index')}}">{{ GoogleTranslate::trans('Liste de Matériels (Mobilers)', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>
 
-          <li class="nav-item nav-category">Accèss</li>
+          <li class="nav-item nav-category">{{ GoogleTranslate::trans('Accèss', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Compte</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Compte', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('users.create')}}">Nouvel Utilisateur </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('users.index')}}">Liste des Utilisateurs </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('users.create')}}">{{ GoogleTranslate::trans('Nouvel Utilisateur', $appLocale)}} </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('users.index')}}">{{ GoogleTranslate::trans('Liste des Utilisateurs', $appLocale)}} </a></li>
               </ul>
             </div>
           </li>
@@ -343,16 +351,16 @@
   @guest
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-      <li class="nav-item nav-category">Accès</li>
+      <li class="nav-item nav-category">{{ GoogleTranslate::trans('Accès', $appLocale)}}</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Compte</span>
+              <span class="menu-title">{{ GoogleTranslate::trans('Compte', $appLocale)}}</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('users.create')}}">Connexion</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('users.create')}}">{{ GoogleTranslate::trans('Connexion', $appLocale)}}</a></li>
               </ul>
             </div>
           </li>

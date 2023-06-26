@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -49,15 +55,13 @@
                             <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Détail de la production [{{$production_comptable->number}}]</a>
+                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Détail de la production', $appLocale)}} [{{$production_comptable->number}}]</a>
                                     </li>
                                 </ul>
                                 <div>
                                     <div class="btn-wrapper">
-                                        <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                                        <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
                                         {{-- <a href="{{ route('allocate_emballage', ['production' => $production_comptable->id ])}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Attribuer un emballage</a> --}}
-                                        <a href="{{ route('allocate_matiere', ['production' => $production_comptable->id ])}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Attribuer une matière</a>
+                                        <a href="{{ route('allocate_matiere', ['production' => $production_comptable->id ])}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Attribuer une matière', $appLocale)}}</a>
 
                                     </div>
                                 </div>
@@ -70,8 +74,8 @@
                                                 <div class="card-body">
                                                     <div class="d-sm-flex justify-content-between align-items-start">
                                                         <div>
-                                                            <h4 class="card-title card-title-dash">Cout de production [{{$production_comptable->number}}]</h4>
-                                                            <p class="card-subtitle card-subtitle-dash">Somme total de coûts de production</p>
+                                                            <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Cout de production', $appLocale)}} [{{$production_comptable->number}}]</h4>
+                                                            <p class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Somme total de coûts de production', $appLocale)}}</p>
                                                         </div>
                                                        
                                                     </div>
@@ -104,7 +108,7 @@
 
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title card-title-dash">Catégorie</h4>
+                                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</h4>
                                                         <div class="media">
                                                         <i class="ti-world icon-md text-info d-flex align-self-end me-3"></i>
                                                         <div class="media-body">
@@ -122,7 +126,7 @@
                                         <div class="col-lg-4 stretch-card mt-3 ">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h4 class="card-title card-title-dash">Emballages</h4>
+                                                    <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Emballages', $appLocale)}}</h4>
                                                     <div class="media">
                                                         <i class="ti-world icon-md text-info d-flex align-self-center me-3"></i>
                                                         <div class="media-body col-lg-12">
@@ -130,7 +134,7 @@
                                                                 @if($production_comptable->emballage->type_emballage)
                                                                     {{ $production_comptable->emballage->type_emballage->name }} 
                                                                 @else
-                                                                    <p class="card-text text-danger">{{'Pas d\'emballage utilisés'}}</p>
+                                                                    <p class="card-text text-danger">{{ GoogleTranslate::trans('Pas d\'emballage utilisés', $appLocale)}}</p>
                                                                 @endif
                                                             @endif
                                                         </div>
@@ -145,7 +149,7 @@
                                        
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title card-title-dash">Matières Premières</h4>
+                                                <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Matières Premières', $appLocale)}}</h4>
                                                 <div class="media">
                                                     <i class="ti-world icon-md text-info d-flex align-self-start me-3"></i>
                                                     <div class="media-body col-lg-12">
@@ -161,17 +165,17 @@
                                                                                 @forelse($production->matieres as $product_matiere)
                                                                                     {{ $product_matiere->name }} |
                                                                                 @empty
-                                                                                    <p class="card-text text-danger">{{'Pas de matière attribuée '}}</p>
+                                                                                    <p class="card-text text-danger">{{ GoogleTranslate::trans('Pas de matière attribuée', $appLocale)}}</p>
                                                                                 @endforelse
                                                                             @endif
                                                                         @empty
-                                                                            <p class="card-text text-danger">{{'Pas de matières utilisées '}}</p>
+                                                                            <p class="card-text text-danger">{{ GoogleTranslate::trans('Pas de matières utilisées', $appLocale )}}</p>
                                                                         @endforelse
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-2">
                                                                     <div class="col-lg-2">
-                                                                        <b>Quantité</b>
+                                                                        <b>{{ GoogleTranslate::trans('Quantité')}}</b>
                                                                     </div>
                                                                     <div class="col-lg-10">
                                                                         @if($production->production_matiere_quantities)
@@ -191,7 +195,7 @@
                                         <div class="col-lg-12 grid-margin stretch-card">
                                             <div class="card">
                                               <div class="card-body">
-                                                <h4 class="card-title">Element de la production {{ $production_comptable->number }}</h4>
+                                                <h4 class="card-title">{{ GoogleTranslate::trans('Informations de la production', $appLocale)}} {{ $production_comptable->number }}</h4>
                                                 
                                                 <div class="table-responsive">
                                                   <table class="table table-striped">
@@ -200,9 +204,9 @@
                                                         <th>
                                                           #
                                                         </th>
-                                                        <th>Quantité</th>
-                                                        <th> Prix de vente</th>
-                                                        <th>date de production</th>
+                                                        <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('date de production', $appLocale)}}</th>
                                                         
                                                       </tr>
                                                     </thead>
@@ -221,9 +225,9 @@
                                                                 @if($production_comptable->emballage->type_emballage)
                                                                     @foreach($production_comptable->emballage->type_emballage->price_config as $config_price)
                                                                         <div class="text-danger mt-2">
-                                                                            {{ 'Qté: ' . $config_price->quantity_min . 'Pc ' . $config_price->quantity_max.'Pc ' }}
+                                                                            {{ GoogleTranslate::trans('Quantité', $appLocale )}}  {{ $config_price->quantity_min . 'Pc ' . $config_price->quantity_max.'Pc ' }}
                                                                             <div class="badge badge-opacity-warning">
-                                                                                {{ 'Prix: '. $config_price->price .'$'}}
+                                                                                {{ GoogleTranslate::trans('Prix: ', $appLocale)}} {{ $config_price->price .'$'}}
                                                                             </div>
                                                                         </div>
                                                                     @endforeach

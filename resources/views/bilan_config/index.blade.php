@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,14 +54,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Liste de Comptes</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Liste de Comptes', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                                <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                                <a href="{{ route('bilan_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Elaborer le Bilan</a>
+                                <a href="{{ route('bilan_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Elaborer le Bilan', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +75,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Elément du Bilan</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Elément du Bilan', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
@@ -91,13 +95,13 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Intitulé du Compte</th>
-                                                <th>Montant</th>
-                                                <th>Classement</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Intitulé du Compte', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Classement', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $action)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -162,10 +166,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre d'élément du bilan</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre d\'élément du bilan', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $bilan_configs->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

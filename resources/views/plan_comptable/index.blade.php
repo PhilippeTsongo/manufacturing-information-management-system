@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,13 +54,13 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Liste de Comptes</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Liste de Comptes', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                                <a href="{{ route('plan_comptable.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouveau compte</a>
+                                <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</a>
+                                <a href="{{ route('plan_comptable.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> {{ GoogleTranslate::trans('Nouveau compte', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -70,12 +76,12 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de comptes</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de comptes', $appLocale)}}</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                         
                                         <div>
-                                            <a href="{{ route('plan_comptable.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouveau compte</a>
+                                            <a href="{{ route('plan_comptable.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau compte', $appLocale)}}</a>
                                         </div>
 
                                     </div>
@@ -89,13 +95,13 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Numéro de Compte </th>
-                                                    <th>Intitulé de Compte</th>
-                                                    <th>Classe </th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Numéro de Compte', $appLocale)}} </th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Compte', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Classe', $appLocale)}} </th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                     @if(Auth()->check())
                                                       @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
-                                                            <th>Action</th>
+                                                            <th>{{ GoogleTranslate::trans('Action')}}</th>
                                                         @endif
                                                     @endif
                                                 </tr>
@@ -118,16 +124,16 @@
                                                             <div class="col-lg-6">
                                                                 {{--  edit  --}}
                                                                 <a href="{{ route('plan_comptable.edit', ['plan_comptable' => $compte->id]) }}" _method="GET" 
-                                                                    onClick="return confirm('Voulez-vous vraiment modifier ce compte?');" title="Modifier ce compte"> 
+                                                                    onClick="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment modifier ce compte?', $appLocale)}}');" title="{{ GoogleTranslate::trans('Modifier ce compte', $appLocale)}}"> 
                                                                     <i class="mdi mdi-pencil text-info"></i>
                                                                 </a>
                                                             </div>  
                                                             <div class="col-lg-6">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('plan_comptable.destroy', ['plan_comptable' => $compte->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce compte?');">
+                                                                <form action="{{ route('plan_comptable.destroy', ['plan_comptable' => $compte->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce compte?', $appLocale)}}');">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez ce compte" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce compte', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -151,10 +157,10 @@
                                     <div class="col-md-6 col-lg-12 grid-margin">
                                         <div class="card bg-primary card-rounded">
                                             <div class="card-body pb-0">
-                                                <h4 class="card-title card-title-dash text-white mb-4">Nombre de comptes</h4>
+                                                <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de comptes', $appLocale)}}</h4>
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <p class="status-summary-ight-white mb-1">Total</p>
+                                                        <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                         <h2 class="text-info">{{ $comptes->count()}}</h2>
                                                     </div>
                                                     <div class="col-sm-8">

@@ -30,7 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
-    
+  
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
   <div class="container-scroller">
     <!-- header   -->
 
@@ -69,8 +74,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Modifiez Ce Type de Compte</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez Ce formulaire Pour Modifier Ce Type De Compte</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Modifiez Ce Type de Compte', $appLocale) }}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez Ce formulaire Pour Modifier Ce Type De Compte', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -88,7 +93,7 @@
                                     <div class="row">
                                       <div class="col-lg 12">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Nom de la Classification de Comptes</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Nom de la Classification de Comptes', $appLocale)}}</label>
                                               <input type="text" name="name" value="{{ old('name') ?? $account_type->name }}" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="classification">
                                           </div>
                                       </div>                                        
@@ -97,14 +102,14 @@
                                     <div class="row">
                                       <div class="col-lg 12">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Rangé de la classe example: 10-19</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Rangé de la classe example: 10-19', $appLocale)}}</label>
                                               <input type="text" name="range" value="{{ old('range') ?? $account_type->range }}" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="example: 30-39">
                                           </div>
                                       </div>                                        
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Modifiez</button> 
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Modifiez', $appLocale)}}</button> 
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale )}}</button>
                                   </form>
                               </div>
                             </div>
@@ -118,7 +123,7 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de comptes</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de comptes', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <p class="status-summary-ight-white mb-1">Total</p>

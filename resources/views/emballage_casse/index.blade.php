@@ -30,6 +30,13 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
+    
     
   <div class="container-scroller">
     <!-- header   -->
@@ -54,7 +61,7 @@
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -64,7 +71,7 @@
                                     </div>
                                 </div>
 
-                                <a href="{{ route('emballage_casse.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvel emballage cassé</a>
+                                <a href="{{ route('emballage_casse.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvel emballage cassé', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -80,7 +87,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste d'emballage cassés</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste d\'emballage cassés', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
 
@@ -96,13 +103,13 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
-                                                <th>Type d'emballage</th>
-                                                <th>Quantité</th>
-                                                <th>Date </th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}} </th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -137,10 +144,10 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('emballage_casse.destroy', ['emballage_casse' => $emballage_casse->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet emballage cassé?');">
+                                                            <form action="{{ route('emballage_casse.destroy', ['emballage_casse' => $emballage_casse->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cet emballage cassé?', $appLocale)}}');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cet emballage cassé" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cet emballage cassé', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>

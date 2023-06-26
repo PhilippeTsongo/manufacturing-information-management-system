@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -49,14 +55,12 @@
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                   <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
-                          <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-selected="true">Attribution d'emballage</a>
+                          <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-selected="true">{{ GoogleTranslate::trans('Attribution d\'emballage', $appLocale)}}</a>
                       </li>
                   </ul>
                   <div>
                       <div class="btn-wrapper">
-                          <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                          <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                          <a href="{{ route('production.index')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Liste de productions</a>
+                          <a href="{{ route('production.index')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Liste de productions', $appLocale)}}</a>
                       </div>
                   </div>
                 </div>
@@ -73,8 +77,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Attribuer un emballage à la production numéro {{ $production->number}}</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Attribuer un emballage à une production</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Attribuer un emballage à la production numéro', $appLocale)}} {{ $production->number}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Attribuer un emballage à une production', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -91,7 +95,7 @@
                                     <div class="row">
                                       <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Sélectionnez l'emballage</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Sélectionnez l\'emballage', $appLocale)}}</label>
                                               <select id="exampleInputUsername1" name="emballage" class="form-control" required>
                                                 @foreach($emballages as $emballage)
                                                   <option value="{{ $emballage->id }}">{{ $emballage->name }} @if($emballage->type_emballage) {{ $emballage->type_emballage->name }} @endif {{ ' Quantité disponible: ' .$emballage->quantity }}</option>
@@ -102,8 +106,8 @@
 
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Quantité</label>
-                                            <input type="number" name="emballage_quantity"  :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="quantité">
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Quantité', $appLocale)}}</label>
+                                            <input type="number" name="emballage_quantity"  :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="{{ GoogleTranslate::trans('quantité', $appLocale)}}">
                                             {{-- hidden input --}}
                                             <input type="hidden" name="production" value="{{ $production->id }}"  class="form-control" >
                                             <input type="hidden" name="number" value="{{ $production->number }}"  class="form-control" >
@@ -113,8 +117,8 @@
 
                                     </div> 
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>

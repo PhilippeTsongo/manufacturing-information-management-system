@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ date('M') }}]</a>
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocale)}} [{{ date('M') }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">Annuelles [{{ $year }}]</a>
+                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}} [{{ $year }}]</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -69,7 +75,7 @@
                                         @endforeach                             
                                     </div>
                                 </div>
-                                <a href="{{ route('dette.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvelle dette</a>
+                                <a href="{{ route('dette.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle dette', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +90,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Dettes Journalières [{{ $today }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Dettes Journalières', $appLocale)}} [{{ $today }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -99,19 +105,19 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>production</th> 
-                                                <th>Quantité</th>
-                                                <th>Montant</th>
-                                                <th>Reste</th>
-                                                <th>Montant Payé</th>
-                                                <th>Déscription</th>
-                                                <th>Date</th>
-                                                <th>Nom Du Client</th>
-                                                <th>Numéro de Tél</th>
-                                                <th>Adresse</th>
+                                                <th>{{ GoogleTranslate::trans('production', $appLocale)}}</th> 
+                                                <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Reste', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant Payé', $appLocale)}} </th>
+                                                <th>{{ GoogleTranslate::trans('Déscription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Nom Du Client', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Numéro de Tél', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Adresse', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -172,10 +178,10 @@
                                                            
                                                             <div class="col-lg-6">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('dette.destroy', ['dette' => $daily->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette dette?');">
+                                                                <form action="{{ route('dette.destroy', ['dette' => $daily->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette dette?', $appLocale)}}');">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez cette dette" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette dette', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -211,7 +217,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Dettes Mensuelles [{{ date('M') }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Dettes Mensuelles', $appLocale)}} [{{ date('M') }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -226,19 +232,19 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>production</th> 
-                                                <th>Quantité</th>
-                                                <th>Montant</th>
-                                                <th>Montant Payé</th>
-                                                <th>Reste</th>
-                                                <th>Déscription</th>
-                                                <th>Date</th>
-                                                <th>Nom Du Client</th>
-                                                <th>Numéro de Tél</th>
-                                                <th>Adresse</th>
+                                                <th>{{ GoogleTranslate::trans('production', $appLocale)}}</th> 
+                                                <th>{{ GoogleTranslate::trans('Quantité' $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}} </th>
+                                                <th>{{ GoogleTranslate::trans('Montant Payé', $appLocale )}}</th>
+                                                <th>{{ GoogleTranslate::trans('Reste', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Déscription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Nom Du Client', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Numéro de Tél', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Adresse', $appLocale )}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action')}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -302,10 +308,10 @@
                                                            
                                                             <div class="col-lg-6">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('dette.destroy', ['dette' => $month->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette dette?');">
+                                                                <form action="{{ route('dette.destroy', ['dette' => $month->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette dette?', $appLocale)}}');">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez cette dette" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette dette', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -341,7 +347,7 @@
                                 <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Dettes Annuelles [{{ $year }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Dettes Annuelles', $appLocale)}} [{{ $year }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -356,19 +362,19 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>production</th> 
-                                                <th>Quantité</th>
-                                                <th>Montant</th>
-                                                <th>Montant Payé</th>
-                                                <th>Reste</th>
-                                                <th>Déscription</th>
-                                                <th>Date</th>
-                                                <th>Nom Du Client</th>
-                                                <th>Numéro de Tél</th>
-                                                <th>Adresse</th>
+                                                <th>{{ GoogleTranslate::trans('production', $appLocale)}}</th> 
+                                                <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant Payé', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Reste', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Déscription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Nom Du Client', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Numéro de Tél', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Adresse', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -431,10 +437,10 @@
                                                            
                                                             <div class="col-lg-6">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('dette.destroy', ['dette' => $year->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette dette?');">
+                                                                <form action="{{ route('dette.destroy', ['dette' => $year->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette dette?', $appLocale)}}');">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez cette dette" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette dette', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -447,7 +453,7 @@
                                             @endforeach
                                             <tr>
                                                 <td colspan="3">
-                                                    Total 
+                                                    {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                                 </td>
                                                 <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                             </tr>

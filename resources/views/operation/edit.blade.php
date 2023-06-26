@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Modifiez Cette Opération</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Modifier l'Opération <b>{{ $operation->transaction->name }} </b></h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Modifiez Cette Opération', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Modifier l\'Opération', $appLocale)}} <b>{{ $operation->transaction->name }} </b></h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -75,7 +81,7 @@
                                     
                                     <div class="row">
                                       <div class="col-lg 6">
-                                        <label>Compte à Débuter </label>
+                                        <label>{{ GoogleTranslate::trans('Compte à Débuter', $appLocale)}} </label>
                                         <div class="form-check form-check-success">
                                         <label  class="form-check-label">
                                           <input type="radio" class="form-check-input" name="account_actif" value="{{ old('account_actif') ?? $operation->account_number }}">
@@ -93,7 +99,7 @@
                                       </div>
                                       
                                       <div class="col-lg 6">   
-                                        <label>Compte à Créditer</label>
+                                        <label>{{ GoogleTranslate::trans('Compte à Créditer', $appLocale)}}</label>
                                         <div class="form-check form-check-danger">
                                         <label  class="form-check-label">
                                           <input type="radio" class="form-check-input" name="account_actif" value="{{ old('account_actif') ?? $operation->account_number }}">
@@ -114,7 +120,7 @@
                                     <div class="row">
                                       <div class="col-lg 12">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername1">Sélectionnez la Transaction</label>
+                                            <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Sélectionnez la Transaction', $appLocale)}}</label>
                                             <select name="transaction_id" id="exampleInputUsername1" class="form-control">
                                               <option value="{{ old('transaction') ?? $operation->transaction->id }}"> {{ $operation->transaction->name }} </option>
                                               @foreach($transactions as $transaction)
@@ -125,8 +131,8 @@
                                       </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Modifiez</button> 
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Modifiez', $appLocale)}}</button> 
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -140,10 +146,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre d'opérations</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre d\'opérations', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('operation.index')}}">
                                                       <h2 class="text-info">{{ $operations->count()}}</h2>
                                                     </a>

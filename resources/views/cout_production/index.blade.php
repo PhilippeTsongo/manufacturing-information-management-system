@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $month }}]</a>
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocale)}} [{{ $month }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">Annuelles [{{ $year }}]</a>
+                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}} [{{ $year }}]</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                               <div class="btn-group">
-                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                 <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
                                     @foreach($mois as $month)
@@ -81,7 +87,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Couts de Productions Journalièrs [{{ $today }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Couts de Productions Journalièrs', $appLocale)}} [{{ $today }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
@@ -97,11 +103,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
-                                                <th>Description</th>
-                                                
+                                                <th>{{ GoogleTranslate::trans('Libellé', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Description', $appLocale)}}</th>
                                             </tr>
                                         </thead>
                                     <tbody>
@@ -143,7 +148,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Couts de Productions Mensuels [{{ date('M') }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Couts de Productions Mensuels', $appLocale)}} [{{ date('M') }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
@@ -159,11 +164,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
-                                                <th>Description</th>
-                                               
+                                                <th>{{ GoogleTranslate::trans('Libellé', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Description', $appLocale)}}</th>
                                             </tr>
                                         </thead>
                                     <tbody>
@@ -182,7 +186,7 @@
                                         @endforeach
                                         <tr>
                                             <td colspan="2">
-                                                Total 
+                                              {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                             </td>
                                             <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         </tr>
@@ -205,7 +209,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Couts de Productions Annuels [{{ $year }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Couts de Productions Annuels', $appLocale)}} [{{ $year }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -220,10 +224,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
-                                                <th>Description</th>
+                                                <th>{{ GoogleTranslate::trans('Libellé', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Description', $appLocale)}}</th>
                                             </tr>
                                         </thead>
                                     <tbody>
@@ -241,7 +245,7 @@
                                         @endforeach
                                         <tr>
                                             <td colspan="2">
-                                                Total 
+                                              {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                             </td>
                                             <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         </tr>

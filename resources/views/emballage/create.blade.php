@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -69,8 +75,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez un nouvel emballage</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouvel emballage</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez un nouvel emballage', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une nouvel emballage', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -87,7 +93,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Type de l'emballage</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Type de l\'emballage', $appLocale)}}</label>
                                               <select class="form-control" id="exampleInputUsername1" name="emballage_id" >
                                                   @foreach($type_emballages as $type_emballage)
                                                     <option value="{{$type_emballage->id}}">{{$type_emballage->name}}</option>
@@ -98,17 +104,17 @@
                                       
                                         <div class="col-lg 6">   
                                             <div class="form-group">
-                                              <label for="exampleInputUsername10">Nom de l'emballage</label>
+                                              <label for="exampleInputUsername10">{{ GoogleTranslate::trans('Nom de l\'emballage', $appLocale)}}</label>
                                               <select class="form-control" id="exampleInputUsername1" name="name" >
-                                                <option value="Bouteille">Bouteille</option>
+                                                <option value="Bouteille">{{ GoogleTranslate::trans('Bouteille', $appLocale)}}</option>
                                               </select>  
                                             </div>
                                         </div>
 
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername2">Prix d'achat Unitaire</label>
-                                              <input type="text" name="purchase_price" :value="old('purchase_price')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="Prix d'achat">
+                                              <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Prix d\'achat Unitaire', $appLocale)}}</label>
+                                              <input type="text" name="purchase_price" :value="old('purchase_price')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="{{ GoogleTranslate::trans('Prix d\'achat', $appLocale)}}">
                                           </div>
                                         </div>
                                     </div>
@@ -117,14 +123,14 @@
                                       
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername3">Qunatité</label>
-                                            <input type="text" name="quantity" :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername3" placeholder="quantité">
+                                            <label for="exampleInputUsername3">{{ GoogleTranslate::trans('Qunatité', $appLocale)}}</label>
+                                            <input type="text" name="quantity" :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername3" placeholder="{{ GoogleTranslate::trans('quantité', $appLocale)}}">
                                         </div>
                                       </div>
 
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                          <label for="type">Unité</label>
+                                          <label for="type">{{ GoogleTranslate::trans('Unité', $appLocale)}}</label>
                                           <select id="type" name="unit" class="form-control" required>
                                             @foreach($unities as $unity)
                                               <option value="{{ $unity->id }}">{{ $unity->name }}</option>
@@ -134,8 +140,8 @@
                                       </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -149,10 +155,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre d'emballages</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre d\'emballages', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $emballages->count()}}</h2>
                                                     </a>

@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -57,8 +63,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Attribuer une matière première à la production numéro {{ $production->number}}</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Attribuer une matière première à une production</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Attribuer une matière première à la production numéro', $appLocale)}} {{ $production->number}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Attribuer une matière première à une production', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -75,7 +81,7 @@
                                     <div class="row">
                                       <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Sélectionnez la matière</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Sélectionnez la matière', $appLocale)}}</label>
                                               <select id="exampleInputUsername1" name="matiere" class="form-control" required>
                                                 @foreach($matieres as $matiere)
                                                   <option value="{{ $matiere->id }}">{{ $matiere->name }} {{ ' Quantité disponible: ' .$matiere->quantity }}</option>
@@ -86,8 +92,8 @@
 
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Quantité</label>
-                                            <input type="text" name="matiere_quantity"  :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="quantité">
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Quantité', $appLocale)}}</label>
+                                            <input type="text" name="matiere_quantity"  :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="{{ GoogleTranslate::trans('quantité', $appLocale)}}">
                                             {{-- hidden input --}}
                                             <input type="hidden" name="production" value="{{ $production->id }}"  class="form-control" id="exampleInputUsername2">
                                             <input type="hidden" name="number" value="{{ $production->number }}"  class="form-control" id="exampleInputUsername2">
@@ -101,8 +107,8 @@
                                       </div>
                                     </div> 
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel' $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>

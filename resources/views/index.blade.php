@@ -32,8 +32,7 @@
   @section('content')
   
     {{-- IMPORTANT VARIABLE --}}
-
-      <?php
+    <?php
       //shortlisting app()->getLocal
       $appLocale = app()->getLocale();  
     ?>

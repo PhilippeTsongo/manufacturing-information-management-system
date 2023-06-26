@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -69,7 +75,7 @@
                                                 <div class="d-sm-flex justify-content-between align-items-start">
                                                 
                                                     <div>
-                                                        <h4 class="card-title">Bilan de l'exercice Comptable [ {{ $year }} ]</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Bilan de l\'exercice Comptable', $appLocale)}} [ {{ $year }} ]</h4>
                                                     </div>
                                                     <div id="performance-line-legend"></div>
 
@@ -87,11 +93,11 @@
                                                         {{-- <div class="table-responsive"> --}}
                                                             <table class="table table-bordered">
                                                                 <tr>
-                                                                    <th colspan="2" style="text-align:center">Actif</th>
+                                                                    <th colspan="2" style="text-align:center">{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Intitulé de Comptes</th>
-                                                                    <th>Montant</th>
+                                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes', $appLocale)}}</th>
+                                                                    <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
                                                                 </tr>
                                                                 <?php $total_imm = 0; ?>
                                                                 @foreach($immobilises as $immobilise)
@@ -123,7 +129,7 @@
                                                                 <?php $total_cir = $total_cir + $circulant->amount; ?>
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td>Total</td>
+                                                                    <td>{{ GoogleTranslate::trans('Total', $appLocale)}}</td>
                                                                     <td>
                                                                         <div class="badge badge-opacity-warning"><b> 
                                                                             {{ number_format($total_imm + $total_cir, 02).'$' }} 
@@ -137,11 +143,11 @@
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered">
                                                                 <tr>
-                                                                    <th colspan="2" style="text-align:center">Passif</th>
+                                                                    <th colspan="2" style="text-align:center">{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Intitulé de Comptes</th>
-                                                                    <th>Montant</th>
+                                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes', $appLocale)}}</th>
+                                                                    <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
                                                                 </tr>
                                                                 <?php $total_cap = 0; ?>
                                                                 @foreach($capitaux as $capital)
@@ -173,7 +179,7 @@
                                                                 <?php $total_det = $total_det + $capital->amount; ?>
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td>Total</td>
+                                                                    <td>{{ GoogleTranslate::trans('Total', $appLocale)}}</td>
                                                                     <td>
                                                                         <div class="badge badge-opacity-warning"><b> 
                                                                             {{ number_format($total_cap + $total_det, 02).'$' }} 

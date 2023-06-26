@@ -31,6 +31,12 @@
   
   @section('content')
     
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
+
   <div class="container-scroller">
     <!-- header   -->
 
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez Une Nouvelle Dette</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouvelle Dette</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez Une Nouvelle Dette', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une nouvelle Dette', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -74,14 +80,14 @@
                                     <div class="row">
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                          <label for="exampleInputUsername4">Sélectionnez la production</label>
+                                          <label for="exampleInputUsername4">{{ GoogleTranslate::trans('Sélectionnez la production', $appLocale)}}</label>
                                           <select id="exampleInputUsername4" name="production" class="form-control" required>
                                             @foreach($productions as $production)
                                               @if($production->emballages)
                                                     @foreach($production->emballages as $production_emb)
                                                       @if($production_emb->type_emballage)
                                                         <option value="{{ $production->id }}">
-                                                          {{$production_emb->type_emballage->name . ' Qté disponible: '. $production->quantity}}
+                                                          {{$production_emb->type_emballage->name}} {{ GoogleTranslate::trans('Qté disponible:', $appLocale)}} {{ $production->quantity}}
                                                         </option>
                                                       @endif
                                                     @endforeach                                             
@@ -93,7 +99,7 @@
                                    
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Quantité</label>
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Quantité', $appLocale)}}</label>
                                             <div class="input-group">
                                               <input type="number" name="quantity" :value="old('quantity')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="quantité">
                                           </div>
@@ -102,7 +108,7 @@
 
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername6">Montant</label>
+                                            <label for="exampleInputUsername6">{{ GoogleTranslate::trans('Montant', $appLocale)}}</label>
                                             <div class="input-group">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
@@ -115,7 +121,7 @@
                                     <div class="row">
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                          <label for="exampleInputUsername4">Sélectionnez le client</label>
+                                          <label for="exampleInputUsername4">{{ GoogleTranslate::trans('Sélectionnez le client', $appLocale)}}</label>
                                           <select id="exampleInputUsername4" name="client" class="form-control" required>
                                             @foreach($clients as $client)
                                               <option value="{{ $client->id }}">
@@ -127,7 +133,7 @@
                                       </div>   
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername7">Déscription</label>
+                                            <label for="exampleInputUsername7">{{ GoogleTranslate::trans('Déscription', $appLocale)}}</label>
                                             <div class="input-group">
                                               <input type="text" name="description" :value="old('description')" required autofocus  class="form-control" id="exampleInputUsername7" placeholder="déscription">
                                           </div>
@@ -135,8 +141,8 @@
                                       </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -150,10 +156,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de dettes</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de dettes', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $dettes->count()}}</h2>
                                                     </a>

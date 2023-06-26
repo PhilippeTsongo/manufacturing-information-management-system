@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
     <div class="container-scroller">
     <!-- header   -->
@@ -71,8 +77,8 @@
                                                     <div class="card-body">
                                                         <div class="d-sm-flex justify-content-between align-items-start">
                                                             <div>
-                                                                <h4 class="card-title card-title-dash">Balance Financière Journalièrs [{{ $today }}]</h4>
-                                                                <p class="card-subtitle card-subtitle-dash">Cette partie illustre la différence entre toutes les recettes et les charges Journalièrs </p>
+                                                                <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Balance Financière Journalièrs', $appLocale)}} [{{ $today }}]</h4>
+                                                                <p class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Cette partie illustre la différence entre toutes les recettes et les charges Journalièrs', $appLocale)}} </p>
                                                             </div>
                                                         </div>
                                                         <div class="d-sm-flex align-items-center mt-1 justify-content-between">
@@ -123,7 +129,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Recettes</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Recettes', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-end me-3"></i>
                                                             <div class="media-body">
@@ -138,7 +144,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Charges</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Charges', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-start me-3"></i>
                                                             <div class="badge badge-opacity-warning">
@@ -159,8 +165,8 @@
                                                     <div class="card-body">
                                                         <div class="d-sm-flex justify-content-between align-items-start">
                                                             <div>
-                                                                <h4 class="card-title card-title-dash">Balance Financière Mensuelles [{{ $month }}]</h4>
-                                                                <p class="card-subtitle card-subtitle-dash">Cette partie illustre la différence entre toutes les recettes et les charges Mensuelles </p>
+                                                                <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Balance Financière Mensuelles', $appLocale)}} [{{ $month }}]</h4>
+                                                                <p class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Cette partie illustre la différence entre toutes les recettes et les charges Mensuelles', $appLocale)}} </p>
                                                             </div>
                                                         </div>
                                                         <div class="d-sm-flex align-items-center mt-1 justify-content-between">
@@ -212,7 +218,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Recettes</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Recettes', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-end me-3"></i>
                                                             <div class="media-body">
@@ -227,7 +233,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Charges</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Charges', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-start me-3"></i>
                                                             <div class="badge badge-opacity-warning">
@@ -252,8 +258,8 @@
                                                     <div class="card-body">
                                                         <div class="d-sm-flex justify-content-between align-items-start">
                                                             <div>
-                                                                <h4 class="card-title card-title-dash">Balance Financière Annuelles [{{ $year }}]</h4>
-                                                                <p class="card-subtitle card-subtitle-dash">Cette partie illustre la différence entre toutes les recettes et les charges Annuelles </p>
+                                                                <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Balance Financière Annuelles', $appLocale)}} [{{ $year }}]</h4>
+                                                                <p class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Cette partie illustre la différence entre toutes les recettes et les charges Annuelles', $appLocale)}} </p>
                                                             </div>
                                                         </div>
                                                         <div class="d-sm-flex align-items-center mt-1 justify-content-between">
@@ -303,7 +309,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Recettes</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Recettes', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-end me-3"></i>
                                                             <div class="media-body">
@@ -318,7 +324,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Charges</h4>
+                                                        <h4 class="card-title">{{ GoogleTranslate::trans('Charges', $appLocale)}}</h4>
                                                         <div class="media">
                                                             <i class="ti-world icon-md text-info d-flex align-self-start me-3"></i>
                                                             <div class="badge badge-opacity-warning">

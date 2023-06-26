@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,20 +54,18 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                           <li class="nav-item">
-                              <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                              <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $month }}] </a>
+                              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocal)}} [{{ $month }}] </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year"  aria-selected="true">Annuelles [{{ $year }}]</a>
+                              <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year"  aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}} [{{ $year }}]</a>
                           </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                                <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                                <a href="{{ route('bonus.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>Accordez un bonus</a>
+                                <a href="{{ route('bonus.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Accordez un bonus', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -78,11 +82,11 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de bonus journalièrs accordés [{{ $today }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de bonus journalièrs accordés', $appLocale)}} [{{ $today }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                                   <div>
-                                      <a href="{{ route('bonus.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Accordez un bonus</a>
+                                      <a href="{{ route('bonus.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Accordez un bonus', $appLocale)}}</a>
                                   </div>
                               </div>
                             
@@ -95,15 +99,15 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>catégorie</th>
-                                            <th>Quantité</th>
-                                            <th>Prix Unitaire</th>
-                                            <th>Prix Total</th>
-                                            <th>Date</th>
-                                            <th>Client</th>
+                                            <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
                                             @if(Auth()->check())
                                                 @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                    <th>Action</th>
+                                                    <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                 @endif
                                             @endif
                                         </tr>
@@ -154,7 +158,7 @@
                                           </td>
                                           <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                           <td>
-                                            <input type="submit" class="btn btn-primary text-light" title="Imprimez les factures de ventes sélectionées" value="Imprimer la facture"> 
+                                            <input type="submit" class="btn btn-primary text-light" title="{{ GoogleTranslate::trans('Imprimez les factures de ventes sélectionées', $appLocale)}}" value="{{ GoogleTranslate::trans('Imprimer la facture', $appLocale)}}"> 
                                           </td>
                                         </tr>
                                       </form>
@@ -178,7 +182,7 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de Bonus Mensuels accordés [{{ $month }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Bonus Mensuels accordés', $appLocale)}} [{{ $month }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                                   <div>
@@ -195,15 +199,15 @@
                                   <thead>
                                       <tr>
                                           <th>#</th>
-                                          <th>catégorie</th>
-                                          <th>Quantité</th>
-                                          <th>Prix Unitaire</th>
-                                          <th>Prix Total</th>
-                                          <th>Date</th>
-                                          <th>Client</th>
+                                          <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
                                           @if(Auth()->check())
                                               @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                  <th>Action</th>
+                                                  <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                               @endif
                                           @endif
                                       </tr>
@@ -256,7 +260,7 @@
                                         <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         
                                         <td>
-                                          <input type="submit" class="btn btn-primary text-light" title="Imprimez les factures de ventes sélectionées" value="Imprimer la facture"> 
+                                          <input type="submit" class="btn btn-primary text-light" title="{{ GoogleTranslate::trans('Imprimez les factures de ventes sélectionées', $appLocale)}}" value="{{ GoogleTranslate::trans('Imprimer la facture', $appLocale)}}"> 
                                         </td>
                                       </tr>
 
@@ -282,11 +286,11 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de Bonus Annuels accordés [{{ $year }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Bonus Annuels accordés', $appLocale)}} [{{ $year }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                                   <div>
-                                      <a href="{{ route('bonus.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Accordez un bonus</a>
+                                      <a href="{{ route('bonus.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Accordez un bonus', $appLocale)}}</a>
                                   </div>
                               </div>
                             
@@ -299,15 +303,15 @@
                                   <thead>
                                       <tr>
                                           <th>#</th>
-                                          <th>catégorie</th>
-                                          <th>Quantité</th>
-                                          <th>Prix Unitaire</th>
-                                          <th>Prix Total</th>
-                                          <th>Date</th>
-                                          <th>Client</th>
+                                          <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
                                           @if(Auth()->check())
                                               @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                  <th>Action</th>
+                                                  <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                               @endif
                                           @endif
                                       </tr>
@@ -358,10 +362,10 @@
                                                       </div>   --}}
                                                       <div class="col-lg-6">
                                                           {{-- delete --}}
-                                                          <form action="{{ route('bonus.destroy', ['bonu' => $year->id ]) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce bonus?');">
+                                                          <form action="{{ route('bonus.destroy', ['bonu' => $year->id ]) }}" method="post" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce bonus?', $appLocale)}}');">
                                                               @csrf
                                                               @method('DELETE')
-                                                              <button type="submit" style="border:none; background: none" title="Supprimez ce bonus" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                              <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce bonus', $appLocal)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                           </form>
                                                       </div>
                                                   </div>

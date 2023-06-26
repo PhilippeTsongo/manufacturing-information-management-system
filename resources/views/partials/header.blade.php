@@ -1,4 +1,9 @@
 <!-- partial:partials/_navbar.html -->
+{{-- IMPORTANT VARIABLE --}}
+<?php
+  //shortlisting app()->getLocal
+  $appLocale = app()->getLocale();  
+?>
 
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -87,16 +92,16 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
             <a href="{{ route('product.requisition')}}" class="dropdown-item py-3">
-              <p class="mb-0 font-weight-medium float-left">Production inférieur à 50pcs </p>
+              <p class="mb-0 font-weight-medium float-left">{{ GoogleTranslate::trans('Production inférieur à 50pcs', $appLocale)}} </p>
               <?php $rec = DB::table('productions')->where('quantity', '<', 50)->get() ;?>
-              <span class="badge badge-pill badge-primary float-right">Voir Plus</span>
+              <span class="badge badge-pill badge-primary float-right">{{ GoogleTranslate::trans('Voir Plus', $appLocale)}}</span>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item preview-item">
               
               <div class="preview-item-content flex-grow py-2">
                 <p class="preview-subject ellipsis font-weight-medium text-dark">{{ count($rec) . ' Productions'}}  </p>
-                <p class="fw-light small-text mb-0"> Rupture de stock </p>
+                <p class="fw-light small-text mb-0"> {{ GoogleTranslate::trans('Rupture de stock', $appLocale)}} </p>
               </div>
             </a>
             
@@ -135,13 +140,13 @@
                 <input type="hidden" name="user_email" value="{{ Auth::user()->email }}">
                 <button type="submit" :href="route('logout')" class="border border-0 bg bg-primary text-light rounded-3 text-center">
                   <i class="dropdown-item-icon mdi mdi-power text-light"></i>
-                  Déconnexion
+                  {{ GoogleTranslate::trans('Déconnexion', $appLocale)}}
                 </button>
               </form>
               @endauth
 
               @guest
-                <a class="dropdown-item" href="{{ route('login')}}"> <i class="menu-icon mdi mdi-account-circle-outline text-primary me-2"></i> Connexion</a>
+                <a class="dropdown-item" href="{{ route('login')}}"> <i class="menu-icon mdi mdi-account-circle-outline text-primary me-2"></i>{{ GoogleTranslate::trans('Connexion', $appLocale)}}</a>
               @endguest
             </div>
           </div>

@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -54,14 +60,14 @@
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
-                                        <a target="blank" href="{{ route('rapport.client') }}" method="GET" class="dropdown-item">Liste de clients</a>
+                                        <a target="blank" href="{{ route('rapport.client') }}" method="GET" class="dropdown-item">{{ GoogleTranslate::trans('Liste de clients', $appLocale)}}</a>
                                     </div>
                                 </div>
-                                <a href="{{ route('client.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouveau Client</a>
+                                <a href="{{ route('client.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau Client', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +83,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste de Clients</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Clients', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
@@ -93,13 +99,13 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
-                                                <th>Email</th>
-                                                <th>Tél</th>
-                                                <th>Adresse</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Email', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Tél', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Adresse', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -120,16 +126,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('client.edit', ['client' => $client->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier ce client?');" title="Modifier ce client"> 
+                                                                onClick="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment modifier ce client?', $appLocale)}}');" title="{{ GoogleTranslate::trans('Modifier ce client'; $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('client.destroy', ['client' => $client->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce client?');">
+                                                            <form action="{{ route('client.destroy', ['client' => $client->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce client?', $appLocale)}}');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez ce client" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce client', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -151,10 +157,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de Clients</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de Clients', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $clients->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

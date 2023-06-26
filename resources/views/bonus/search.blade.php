@@ -31,6 +31,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -49,14 +55,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Offrir un bonus</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Offrir un bonus', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                                <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                                <a href="{{ route('bonus.index')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>Liste de bonus accordés</a>
+                                <a href="{{ route('bonus.index')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Liste de bonus accordés', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -72,12 +76,12 @@
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Accourder un Bonus au Client</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Accourder un Bonus au Client', $appLocale)}}</h4>
                                     
                                         <form method="GET" action="{{ route('bonus.create') }}" >
                                             <div class="row">
                                                 <div class="col-lg-9">
-                                                    <input type="search" name="query" value="" placeholder="Recherchez une production" class="form-control" title="Entrer le numéro de la production">
+                                                    <input type="search" name="query" value="" placeholder="{{ GoogleTranslate::trans('Recherchez une production', $appLocale)}}" class="form-control" title="{{ GoogleTranslate::trans('Entrer le numéro de la production', $appLocale)}}">
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <button type="submit" class="form-control btn btn-primary text-white"><i class="icon-search"></i></button>
@@ -90,15 +94,15 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>catégorie</th>
-                                                        <th>Disponible</th>
-                                                        <th>Quantité</th>
-                                                        <th>Client</th>
-                                                        <th> Prix de vente</th>
+                                                        <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Disponible', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
                                                         @if(Auth()->check())
                                                             @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
                                                                 <th>
-                                                                    Action
+                                                                    {{ GoogleTranslate::trans('Action', $appLocale)}}
                                                                 </th>
                                                             @endif
                                                         @endif
@@ -160,7 +164,7 @@
                                                         </tr>
                                                     </form>
                                                 @empty
-                                                <br><span class="alert alert-danger"> {{ 'Aucun résultat' }} </span><br><br>
+                                                <br><span class="alert alert-danger"> {{ GoogleTranslate::trans('Aucun résultat', $appLocale) }} </span><br><br>
                                                 @endforelse
 
                                                 {{ $productions->links('vendor.pagination.bootstrap-5')}}

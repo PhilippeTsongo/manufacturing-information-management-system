@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $monthly }}]</a>
+                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocales)}} [{{ $monthly }}]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">Annuelles [{{ $yearly }}]</a>
+                            <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}}} [{{ $yearly }}]</a>
                         </li>
                     </ul>
                     <div>
                         <div class="btn-wrapper">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                 <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -70,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('production.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvelle production</a>
+                            <a href="{{ route('production.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle production', $appLocale)}}</a>
                         </div>
                     </div>
                 </div>
@@ -87,7 +93,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de productions journalières [{{ $today }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de productions journalières', $appLocale)}} [{{ $today }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
 
@@ -102,18 +108,18 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Prix de vente</th>
-                                                    <th>Cout de production</th>
-                                                    <th>Matière première</th>
-                                                    <th>Emballage</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Cout de production', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Matière première', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Emballage', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
 
                                                     @if(Auth()->check())
                                                         @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
-                                                            <th>Action</th>
-                                                        @endif
+                                                            <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
+                                                        @endifs
                                                     @endif
                                                 </tr>
                                             </thead>
@@ -121,7 +127,7 @@
                                             @foreach($dailys as $daily)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('production.show', $daily)}}" style="text-decoration:none" title="Voir le detail production">
+                                                    <a href="{{ route('production.show', $daily)}}" style="text-decoration:none" title="{{ GoogleTranslate::trans('Voir le detail production', $appLocale)}}">
                                                         {{ $daily->number }}
                                                     </a>
                                                 </td>
@@ -177,7 +183,7 @@
                                                             }
                                                         ?>
                                                     @else
-                                                        <span class="text-danger"> {{ 'Aucune matière première Attribuée'}}</span>
+                                                        <span class="text-danger"> {{ GoogleTranslate::trans('Aucune matière première Attribuée', $appLocale) }}</span>
                                                     @endif
                                                     @endif
                                                 </td>
@@ -236,7 +242,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de productions Mensuelles [{{ $monthly }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de productions Mensuelles', $appLocale)}} [{{ $monthly }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                     </div>
@@ -250,13 +256,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Prix de vente</th>
-                                                    <th>Cout de production</th>
-                                                    <th>Matière première</th>
-                                                    <th>Emballage</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Cout de production', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Matière première', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Emballage', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
 
                                                     @if(Auth()->check())
                                                         @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
@@ -324,7 +330,7 @@
                                                             }
                                                         ?>
                                                     @else
-                                                        <span class="text-danger"> {{ 'Aucune matière première Attribuée'}}</span>
+                                                        <span class="text-danger"> {{ GoogleTranslate::trans('Aucune matière première Attribuée', $appLocale)}}</span>
                                                     @endif
                                                     @endif
                                                 </td>
@@ -348,10 +354,10 @@
                                                            
                                                             <div class="col-lg-3">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('production.destroy', ['production' => $month->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette production?');">
+                                                                <form action="{{ route('production.destroy', ['production' => $month->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette production?', $appLoacale)}}' );">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez cette production" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette production', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -381,7 +387,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de productions Annuelles [{{ $yearly }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de productions Annuelles', $appLocale)}} [{{ $yearly }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                     </div>
@@ -395,13 +401,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Prix de vente</th>
-                                                    <th>Cout de production</th>
-                                                    <th>Matière première</th>
-                                                    <th>Emballage</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Cout de production', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Matière première', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Emballage', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
 
                                                     @if(Auth()->check())
                                                         @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
@@ -414,7 +420,7 @@
                                             @foreach($years as $year)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('production.show', $year)}}" style="text-decoration:none" title="Voir le detail production">
+                                                    <a href="{{ route('production.show', $year)}}" style="text-decoration:none" title="{{ GoogleTranslate::trans('Voir le detail production', $appLocale)}}">
                                                         {{ $year->number }}
                                                     </a>
                                                 </td>
@@ -470,7 +476,7 @@
                                                             }
                                                         ?>
                                                     @else
-                                                        <span class="text-danger"> {{ 'Aucune matière première Attribuée'}}</span>
+                                                        <span class="text-danger">  {{ GoogleTranslate::trans('Aucune matière première Attribuée', $appLocale)}}</span>
                                                     @endif
                                                     @endif
                                                 </td>
@@ -487,17 +493,17 @@
                                                          @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur')
                                                         <div class="row">
                                                             <div class="col-lg-3">
-                                                                <a href="{{ route('production.show', $year)}}" title="Voir la production">
+                                                                <a href="{{ route('production.show', $year)}}" title="{{ GoogleTranslate::trans('Voir la production', $appLocale)}}">
                                                                     <i class="mdi mdi-eye"></i> 
                                                                 </a>
                                                             </div>
                                                             
                                                             <div class="col-lg-3">
                                                                 {{-- delete --}}
-                                                                <form action="{{ route('production.destroy', ['production' => $year->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette production?');">
+                                                                <form action="{{ route('production.destroy', ['production' => $year->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette production?', $appLocale)}} ');">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
-                                                                    <button type="submit" style="border:none; background: none" title="Supprimez cette production" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                    <button type="submit" style="border:none; background: none" title=" {{ GoogleTranslate::trans('Supprimez cette production', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                 </form>
                                                             </div>
                                                         </div>

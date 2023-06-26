@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Modifiez cette matière</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Modifier cette matière</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Modifiez cette matière', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Modifier cette matière', $appLocale)}}</h5>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -70,14 +76,14 @@
                                     <div class="row">
                                         <div class="col-lg 6">   
                                             <div class="form-group">
-                                                <label for="exampleInputUsername1">Nom de la matière</label>
+                                                <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Nom de la matière', $appLocale)}}</label>
                                                 <input type="text" type="text" name="name" value=" {{ old('name') ?? $matiere->name}}" required autofocus  class="form-control" id="exampleInputUsername1">
                                             </div>
                                         </div>
 
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                            <label for="type">Type de la matière</label>
+                                            <label for="type">{{ GoogleTranslate::trans('Type de la matière', $appLocale)}}</label>
                                             <select id="type" name="type" class="form-control" required>
                                                 <option value="{{ old('type') ?? $matiere->type }}">{{ $matiere->type }}</option>
                                                 @foreach($type_matieres as $type_matiere)
@@ -90,14 +96,14 @@
                                     <div class="row">
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">Quantité</label>
+                                            <label for="exampleInputEmail2">{{ GoogleTranslate::trans('Quantité', $appLocale)}}</label>
                                             <input type="number" name="quantity" value="{{ old('quantity') ?? $matiere->quantity }}" required class="form-control" id="exampleInputEmail2">
                                         </div>
                                       </div>
 
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputEmail3">Prix d'achat Unitaire</label>
+                                            <label for="exampleInputEmail3">{{ GoogleTranslate::trans('Prix d\'achat Unitaire', $appLocale)}}</label>
                                             <input type="text" name="purchase_price" value="{{ old('purchase_price') ?? $matiere->purchase_price }}" required class="form-control" id="exampleInputEmail3">
                                         </div>
                                       </div>
@@ -105,7 +111,7 @@
                                     <div class="row">  
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                          <label for="type2">Unité</label>
+                                          <label for="type2">{{ GoogleTranslate::trans('Unité', $appLocale)}}</label>
                                           <select id="type2" name="unit" class="form-control" required>
                                             @if($matiere->unit)
                                             <option value="{{ old('unit') ?? $matiere->unit->id }}">{{ $matiere->unit->name }}</option>
@@ -118,8 +124,8 @@
                                       </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -133,10 +139,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de matières</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de matières', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $matieres->count()}}</h2>
                                                     </a>

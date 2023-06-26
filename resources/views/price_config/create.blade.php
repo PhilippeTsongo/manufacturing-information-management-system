@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +54,12 @@
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                   <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
-                      <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Prix De réduction</a>
+                      <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Prix De réduction', $appLocale)}}</a>
                   </li>
                   </ul>
                   <div>
                       <div class="btn-wrapper">
-                          <a href="{{ route('price_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouveau Prix de réduction</a>
+                          <a href="{{ route('price_config.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau Prix de réduction', $appLocale)}}</a>
                       </div>
                   </div>
                 </div>
@@ -69,8 +75,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez un nouveau prix de réduction</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouveau prix de réduction</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez un nouveau prix de réduction', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une nouveau prix de réduction', $appLocale )}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -87,7 +93,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Type d'emballages</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Type d\'emballages', $appLocale)}}</label>
                                               <select class="form-control" id="exampleInputUsername1" name="emballage_id" >
                                                   @foreach($type_emballages as $type_emballage)
                                                     <option value="{{$type_emballage->id}}">{{$type_emballage->name}}</option>
@@ -99,28 +105,28 @@
                                     
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername3">Quantité minimum en Pièce</label>
-                                              <input type="number" name="quantity_min" :value="old('quantity_min')" required autofocus  class="form-control" id="exampleInputUsername3" placeholder="quantité minimum">
+                                              <label for="exampleInputUsername3">{{ GoogleTranslate::trans('Quantité minimum en Pièce', $appLocale)}}</label>
+                                              <input type="number" name="quantity_min" :value="old('quantity_min')" required autofocus  class="form-control" id="exampleInputUsername3" placeholder="{{ GoogleTranslate::trans('quantité minimum', $appLocale)}}">
                                           </div>
                                         </div>
 
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername9">Quantité maximum en Pièce</label>
-                                              <input type="number" name="quantity_max" :value="old('quantity_max')" required autofocus  class="form-control" id="exampleInputUsername9" placeholder="quantité maximum">
+                                              <label for="exampleInputUsername9">{{ GoogleTranslate::trans('Quantité maximum en Pièce', $appLocale)}}</label>
+                                              <input type="number" name="quantity_max" :value="old('quantity_max')" required autofocus  class="form-control" id="exampleInputUsername9" placeholder="{{ GoogleTranslate::trans('quantité maximum', $appLocale)}}">
                                           </div>
                                         </div>
 
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsernam2">Prix de vente unitaire</label>
-                                              <input type="text" name="price" :value="old('price')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="prix de vente">
+                                              <label for="exampleInputUsernam2">{{ GoogleTranslate::trans('Prix de vente unitaire', $appLocale)}}</label>
+                                              <input type="text" name="price" :value="old('price')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="{{ GoogleTranslate::trans('prix de vente', $appLocale)}}">
                                           </div>
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -128,16 +134,15 @@
                         </div>
                         </div>
                       
-                      
                         <div class="col-lg-4 d-flex flex-column">
                             <div class="row flex-grow">
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de réduction </h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de réduction', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $price_reductions->count()}}</h2>
                                                     </a>

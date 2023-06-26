@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,14 +54,14 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Matières</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Matières', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
 
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -65,7 +71,7 @@
                                     </div>
                                 </div>
 
-                                <a href="{{ route('matiere.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvelle Matière</a>
+                                <a href="{{ route('matiere.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> {{ GoogleTranslate::trans('Nouvelle Matière', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +87,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste de matières premières</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de matières premières', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -95,14 +101,14 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
-                                                <th>Type</th>
-                                                <th>Quantité</th>
-                                                <th>Prix d'achat</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Type', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Prix d\'achat', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -130,16 +136,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('matiere.edit', ['matiere' => $matiere->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette matière?');" title="Modifier cette matière"> 
+                                                                onClick="return confirm('Voulez-vous vraiment modifier cette matière?');" title="{{ GoogleTranslate::trans('Modifier cette matière', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('matiere.destroy', ['matiere' => $matiere->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette matière?');">
+                                                            <form action="{{ route('matiere.destroy', ['matiere' => $matiere->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette matière?', $appLocale)}}');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette matière" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette matière', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -163,10 +169,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de matières premières</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de matières premières', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $matieres->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez un nouveau client</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouveau client</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez un nouveau client', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une nouveau client', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -74,14 +80,14 @@
                                     <div class="row">
                                         <div class="col-lg 6">   
                                             <div class="form-group">
-                                                <label for="exampleInputUsername1">Nom du client</label>
+                                                <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Nom du client', $appLocale)}}</label>
                                                 <input type="text" type="text" name="name" :value="old('name')" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="nom">
                                             </div>
                                         </div>
 
                                         <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Email</label>
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Email', $appLocale)}}</label>
                                               <input type="email" type="text" name="email" :value="old('email')" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="email">
                                           </div>
                                         </div>
@@ -91,22 +97,22 @@
 
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Numéro de téléphone  </label>
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Numéro de téléphone', $appLocale)}}  </label>
                                             <input type="tel" name="tel" :value="old('tel')" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="0971122237">
                                         </div>
                                       </div>
 
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername3">Adresse</label>
+                                            <label for="exampleInputUsername3">{{ GoogleTranslate::trans('Adresse', $appLocale)}}</label>
                                             <input type="text" name="address" :value="old('address')" required autofocus  class="form-control" id="exampleInputUsername3" placeholder="Adresse">
                                         </div>
                                       </div>
 
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $ppLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -120,10 +126,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de Clients</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de Clients', $ppLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $clients->count()}}</h2>
                                                     </a>

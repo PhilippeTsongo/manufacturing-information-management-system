@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $month }}]</a>
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocale)}} [{{ $month }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">Annuelles [{{ $year }}]</a>
+                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}} [{{ $year }}]</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -86,7 +92,7 @@
                                 <div class="card-body">
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                         <div>
-                                            <h4 class="card-title">Opérations Comptables Journalières [{{ $today }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Opérations Comptables Journalières', $appLocale)}} [{{ $today }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                     </div>
@@ -100,15 +106,15 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Vente</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Vente', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -154,15 +160,15 @@
                                             {{-- matiere --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat matières premières</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat matières premières', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -208,15 +214,15 @@
                                             {{-- emballage --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat d'emballages</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat d\'emballages', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -262,15 +268,15 @@
                                             {{-- CHARGES CAS GENERAL --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Autres Charges </td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Autres Charges', $appLocale)}} </td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -330,7 +336,7 @@
                                 <div class="card-body">
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                         <div>
-                                            <h4 class="card-title">Opérations Comptables Mensuelles [{{ date('M') }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Opérations Comptables Mensuelles', $appLocale)}} [{{ date('M') }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                     </div>
@@ -344,15 +350,15 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Vente</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Vente', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -398,15 +404,15 @@
                                             {{-- matiere --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat matières premières</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat matières premières', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <<th>#</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -452,15 +458,15 @@
                                             {{-- emballage --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat d'emballages</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat d\'emballages', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -506,15 +512,15 @@
                                             {{-- CHARGES CAS GENERAL --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Autres Charges </td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Autres Charges', $appLocale)}} </td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -573,7 +579,7 @@
                                 <div class="card-body">
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                         <div>
-                                            <h4 class="card-title">Opérations Comptables annuelles [{{ $year }}]</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Opérations Comptables annuelles', $appLocale)}} [{{ $year }}]</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
                                     </div>
@@ -591,11 +597,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -641,15 +647,15 @@
                                             {{-- matiere --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat matières premières</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat matières premières', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -695,15 +701,15 @@
                                             {{-- emballage --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Achat d'emballages</td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Achat d\'emballages', $appLocale)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -749,15 +755,15 @@
                                             {{-- CHARGES CAS GENERAL --}}
                                             <thead>
                                                 <tr>
-                                                    <td colspan="6" style="center">Autres Charges </td>
+                                                    <td colspan="6" style="center">{{ GoogleTranslate::trans('Autres Charges', $appLocale)}} </td>
                                                 </tr>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Débit</th>
-                                                    <th>Crédit</th>
-                                                    <th>Intitulé de Comptes & Date & Libellé</th>
-                                                    <th>Actif</th>
-                                                    <th>Passif</th>
+                                                    <th>{{ GoogleTranslate::trans('Débit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Crédit', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Intitulé de Comptes & Date & Libellé', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Actif', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Passif', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

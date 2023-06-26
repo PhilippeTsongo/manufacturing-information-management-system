@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#rec_basic" role="tab" aria-selected="true" >Moins de 10</a>
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#rec_basic" role="tab" aria-selected="true" >{{ GoogleTranslate::trans('Moins de 10', $appLocale)}}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#rec_bus" role="tab" aria-selected="false">Moins de 30</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#rec_pro" role="tab" aria-selected="false" aria-controls="rec_pro">Moins de 50</a>
+                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#rec_pro" role="tab" aria-selected="false" aria-controls="rec_pro">{{ GoogleTranslate::trans('Moins de 50', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -85,7 +91,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de Productions Avec Moins de  10 pcs</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Productions Avec Moins de  10 pcs', $appLocale)}}</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
 
@@ -100,16 +106,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                         <tbody>
                                             @foreach($rec_basics as $rec_basic)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('production.show', ['production' => $rec_basic->id ])}}" style="text-decoration:none" title="Voir le detail production">
+                                                    <a href="{{ route('production.show', ['production' => $rec_basic->id ])}}" style="text-decoration:none" title="{{ GoogleTranslate::trans('Voir le detail production', $appLocale)}}">
                                                         {{ $rec_basic->number }}
                                                     </a>
                                                 </td>
@@ -148,7 +154,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de productions Avec Moins de 30 Pcs</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de productions Avec Moins de 30 Pcs', $appLocale)}}</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
 
@@ -163,9 +169,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
 
                                                 </tr>
                                             </thead>
@@ -173,7 +179,7 @@
                                             @foreach($rec_businesses as $rec_business)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('production.show', $rec_business)}}" style="text-decoration:none" title="Voir le detail production">
+                                                    <a href="{{ route('production.show', $rec_business)}}" style="text-decoration:none" title="{{ GoogleTranslate::trans('Voir le detail production', $appLocale)}}">
                                                         {{ $rec_business->number }}
                                                     </a>
                                                 </td>
@@ -215,7 +221,7 @@
                                     <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                         <div>
-                                            <h4 class="card-title">Liste de productions Avec Moins de 50 Pcs</h4>
+                                            <h4 class="card-title">{{ GoogleTranslate::trans('Liste de productions Avec Moins de 50 Pcs', $appLocale)}}</h4>
                                         </div>
                                         <div id="performance-line-legend"></div>
 
@@ -230,16 +236,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Catégorie</th>
-                                                    <th>Quantité</th>
-                                                    <th>Date</th>
+                                                    <th>{{ GoogleTranslate::trans('Catégorie', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                                    <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($rec_pros as $rec_pro)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('production.show', $rec_pro)}}" style="text-decoration:none" title="Voir le detail production">
+                                                    <a href="{{ route('production.show', $rec_pro)}}" style="text-decoration:none" title="{{ GoogleTranslate::trans('Voir le detail production', $appLocale)}}">
                                                         {{ $rec_pro->number }}
                                                     </a>
                                                 </td>

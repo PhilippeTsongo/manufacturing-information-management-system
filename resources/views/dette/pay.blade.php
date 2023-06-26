@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez un paiement d'une dette</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour modifier un paiement d'une dette</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez un paiement d\'une dette', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour modifier un paiement d\'une dette', $appLocale)}}</h5>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -95,7 +101,7 @@
                                    
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Quantité</label>
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Quantité', $appLocale)}}</label>
                                             <div class="input-group">
                                               <input type="number" name="quantity" value="{{ old('quantity') ?? $dette->quantity }}" readOnly autofocus  class="form-control" id="exampleInputUsername2" placeholder="quantité">
                                           </div>
@@ -104,7 +110,7 @@
 
                                       <div class="col-lg 4">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername6">Montant</label>
+                                            <label for="exampleInputUsername6">{{ GoogleTranslate::trans('Montant', $appLocale)}}</label>
                                             <div class="input-group">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
@@ -117,7 +123,7 @@
                                     <div class="row">
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                            <label for="exampleInputUsername4">Client</label>
+                                            <label for="exampleInputUsername4">{{ GoogleTranslate::trans('Client')}}</label>
                                             <select id="exampleInputUsername4" name="client" class="form-control" readOnly>
                                                 @if($dette->client)
                                                 <option value="{{ $dette->client->id }}">
@@ -129,7 +135,7 @@
                                         </div>   
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputUsername7">Déscription</label>
+                                                <label for="exampleInputUsername7">{{ GoogleTranslate::trans('Déscription', $appLocale)}}</label>
                                                 <div class="input-group">
                                                 <input type="text" name="description" value="{{ old('description') ?? $dette->description }}" required autofocus  class="form-control" id="exampleInputUsername7" placeholder="déscription">
                                             </div>
@@ -138,7 +144,7 @@
 
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputUsername6">Déjà payé</label>
+                                                <label for="exampleInputUsername6">{{ GoogleTranslate::trans('Déjà payé', $appLocale)}}</label>
                                                 <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
@@ -150,7 +156,7 @@
 
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputUsername6">Montant de paiement</label>
+                                                <label for="exampleInputUsername6">{{ GoogleTranslate::trans('Montant de paiement', $appLocale)}}</label>
                                                 <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
@@ -161,8 +167,8 @@
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>

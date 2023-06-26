@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +54,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab active" data-bs-toggle="tab" href="#daily" role="tab"  aria-controls="daily" aria-selected="true">Liste de Pièces Justificatives</a>
+                                <a class="nav-link" id="home-tab active" data-bs-toggle="tab" href="#daily" role="tab"  aria-controls="daily" aria-selected="true">{{ GoogleTranslate::trans('Liste de Pièces Justificatives', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="{{ route('justification.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouvelle Pièce Justificative</a>
+                                <a href="{{ route('justification.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle Pièce Justificative', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -67,7 +73,7 @@
                                     <div class="card-body">
                                         <div class="d-sm-flex justify-content-between align-items-start">
                                             <div>
-                                                <h4 class="card-title">Liste de Pièces Justificatives</h4>
+                                                <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Pièces Justificatives', $appLocale)}}</h4>
                                             </div>
                                             <div id="performance-line-legend"></div>
                                         </div>
@@ -82,9 +88,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Libellé</th>
-                                                        <th>Document</th>
-                                                        <th>Date</th>
+                                                        <th>{{ GoogleTranslate::trans('Libellé', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Document', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                         @if(Auth()->check())
                                                             @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
                                                                 <th>Action</th>
@@ -121,10 +127,10 @@
                                                                 </div>   --}}
                                                                 <div class="col-lg-6">
                                                                     {{-- delete --}}
-                                                                    <form action="{{ route('justification.destroy', ['justification' => $justification->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette pièce justification?');">
+                                                                    <form action="{{ route('justification.destroy', ['justification' => $justification->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette pièce justification?', $appLocale)}}');">
                                                                         {{ csrf_field() }}
                                                                         {{ method_field('DELETE') }}
-                                                                        <button type="submit" style="border:none; background: none" title="Supprimez cette pièce justification" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                        <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette pièce justification', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                                     </form>
                                                                 </div>
                                                             </div>

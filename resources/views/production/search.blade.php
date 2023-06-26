@@ -31,6 +31,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -70,7 +76,7 @@
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Passez une Vente</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Passez une Vente', $appLocale)}}</h4>
                                     
                                         <form method="GET" action="{{ route('production.search') }}" >
                                             <div class="row">
@@ -88,16 +94,16 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>catégorie</th>
-                                                        <th>Type d'emballage</th>
-                                                        <th>Disponible</th>
-                                                        <th>Qté</th>
-                                                        <th>Client</th>
-                                                        <th> Prix de vente</th>
+                                                        <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Disponible', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Qté', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
+                                                        <th>{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}</th>
                                                         @if(Auth()->check())
                                                             @if(Auth::user()->user_type_id == 1)
                                                                 <th>
-                                                                    Action
+                                                                    {{ GoogleTranslate::trans('Action', $appLocale)}}
                                                                 </th>
                                                             @endif
                                                         @endif
@@ -106,7 +112,7 @@
                                                 <tbody>
 
                                                 @forelse($productions as $production)    
-                                                    <form action="{{ route('sale.store') }}" method="post" onSubmit="return confirm('Voulez-vous vendre cette production?');">
+                                                    <form action="{{ route('sale.store') }}" method="post" onSubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vendre cette production?', $appLocale)}} ');">
                                                         @csrf
                 
                                                         {{-- FORM HIDDEN VALUES FOR PRODUCTS --}}
@@ -176,7 +182,7 @@
                                                         </tr>
                                                     </form>
                                                 @empty
-                                                <br><span class="alert alert-danger"> {{ 'Aucun résultat' }} </span><br><br>
+                                                <br><span class="alert alert-danger"> {{ GoogleTranslate::trans('Aucun résultat', $appLocale) }} </span><br><br>
                                                 @endforelse
 
                                                 {{ $productions->links('vendor.pagination.bootstrap-5')}}
