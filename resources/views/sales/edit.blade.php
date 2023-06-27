@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Modifiez La vente Numéro {{ $sale->sale_number }}</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Modifier cette Vente</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Modifiez La vente Numéro', $appLocale)}} {{ $sale->sale_number }}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Modifier cette Vente', $appLocale)}}</h5>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -75,36 +81,36 @@
                                         
                                         <div class="col-lg 12">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail2">Quantité de la Vente</label>
-                                                <input type="number" name="quantity" value="{{ old('quantity') ?? $sale->quantity }}" required class="form-control" id="exampleInputEmail2" placeholder="Quantité">
+                                                <label for="exampleInputEmail2">{{ GoogleTranslate::trans('Quantité de la Vente', $appLocale)}}</label>
+                                                <input type="number" name="quantity" value="{{ old('quantity') ?? $sale->quantity }}" required class="form-control" id="exampleInputEmail2" placeholder="{{ GoogleTranslate::trans('Quantité', $appLocale)}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Prix de Vente</label>
-                                                <input type="number" name="sale_price" value="{{ old('sale_price') ?? $sale->price }}" required class="form-control" id="exampleInputEmail3" placeholder="Prix de vente" readonly>
+                                                <label for="exampleInputEmail3">{{ GoogleTranslate::trans('Prix de Vente', $appLocale)}}</label>
+                                                <input type="number" name="sale_price" value="{{ old('sale_price') ?? $sale->price }}" required class="form-control" id="exampleInputEmail3" placeholder="{{ GoogleTranslate::trans('Prix de vente', $appLocale)}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail4">Prix Total</label>
-                                                <input type="number" name="sale_price" value="{{ old('sale_price') ?? $sale->price * $sale->quantity  }}" required class="form-control" id="exampleInputEmail4" placeholder="Prix de Total" readonly>
+                                                <label for="exampleInputEmail4">{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</label>
+                                                <input type="number" name="sale_price" value="{{ old('sale_price') ?? $sale->price * $sale->quantity  }}" required class="form-control" id="exampleInputEmail4" placeholder="{{ GoogleTranslate::trans('Prix de Total', $appLocale)}}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-lg 4">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail6">Catégorie de la Production</label>
+                                                <label for="exampleInputEmail6">{{ GoogleTranslate::trans('Catégorie de la Production', $appLocale)}}</label>
                                                 <input type="text" name="category" value="{{ old('category') ?? $sale->production->category->name }}" required class="form-control" id="exampleInputEmail6" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Modifiez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Modifiez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                   </form>
                               </div>
                             </div>
@@ -118,7 +124,7 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Vente Numéro {{ $sale->sale_number }}</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Numéro de la vente ', $appLocale)}} {{ $sale->sale_number }}</h4>
                                             
                                         </div>
                                     </div>

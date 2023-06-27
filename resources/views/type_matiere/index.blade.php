@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +54,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Type de matière</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Type de matière', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="{{ route('type_matiere.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>Nouveau Type</a>
+                                <a href="{{ route('type_matiere.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau Type', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +75,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                     <div>    
-                                        <h4 class="card-title">Liste de types de matières premières</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de types de matières premières', $appLocale)}}</h4>
                                     </div>    
                                     <div id="performance-line-legend"></div>
 
@@ -83,7 +89,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
                                                         <th>Action</th>
@@ -103,16 +109,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('type_matiere.edit', ['type_matiere' => $type_matiere->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier ce type de matière ?');" title="Modifier ce type de matière"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier ce type de matière ?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier ce type de matière', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('type_matiere.destroy', ['type_matiere' => $type_matiere->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type de matière?');">
+                                                            <form action="{{ route('type_matiere.destroy', ['type_matiere' => $type_matiere->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce type de matière?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez ce type de matière " > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce type de matière', $appLocale)}} " > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -134,10 +140,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de type de matières premières</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de type de matières premières', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $type_matieres->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,13 +54,12 @@
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                   <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
-                          <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Liste de Recettes</a>
+                          <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Liste de Recettes', $appLocale)}}</a>
                       </li>
                   </ul>
                   <div>
                       <div class="btn-wrapper">
-                          <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
-                          <a href="{{ route('recette.index')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>Liste de Recettes</a>
+                          <a href="{{ route('recette.index')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Liste de Recettes', $appLocale)}}</a>
                       </div>
                   </div>
                 </div>
@@ -70,8 +75,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Enregistrez une nouvelle Recette</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une nouvelle Recette</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Enregistrez une nouvelle Recette', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une nouvelle Recette', $appLocale)}}</h5>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -85,7 +90,7 @@
                                        
                                         <div class="col-lg 6">    
                                           <div class="form-group">
-                                            <label for="type">Type de Recettes</label>
+                                            <label for="type">{{ GoogleTranslate::trans('Type de Recettes', $appLocale)}}</label>
                                             <select id="type" name="type" class="form-control" required>
                                                 @if($autre_recette->type_recette)
                                                     <option value="{{$autre_recette->type_recette->id }}">{{$autre_recette->type_recette->name }}</option>
@@ -99,7 +104,7 @@
 
                                         <div class="col-lg 6">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail2">Montant</label>
+                                                <label for="exampleInputEmail2">{{ GoogleTranslate::trans('Montant', $appLocale)}}</label>
                                                 <input type="text" name="montant" value="{{ old('montant') ?? $autre_recette->montant }}" required class="form-control" id="exampleInputEmail2" >
                                             </div>
                                         </div>
@@ -107,15 +112,15 @@
                                     <div class="row">
                                         <div class="col-lg 6">   
                                             <div class="form-group">
-                                                <label for="exampleInputEmail11">Déscription</label>
+                                                <label for="exampleInputEmail11">{{ GoogleTranslate::trans('Déscription', $appLocale)}}</label>
                                                 <textarea name="description" {{ old('description') ?? $autre_recette->description }}" required class="form-control form-control-lg" id="exampleInputEmail11">{{ old('description') ?? $autre_recette->description }}
                                                 </textarea>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary me-2 text-light">Enregistrez</button>
-                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Enregistrez', $appLocale)}}</button>
+                                    <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                 </form>
                               </div>
                             </div>

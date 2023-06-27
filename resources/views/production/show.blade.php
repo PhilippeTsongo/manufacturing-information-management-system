@@ -157,7 +157,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="row">
                                                                     <div class="col-lg-2">
-                                                                        <b>Matieres</b>
+                                                                        <b>{{ GoogleTranslate::trans('Matieres', $appLocale)}}</b>
                                                                     </div>
                                                                     <div class="col-lg-10">
                                                                         @forelse($production_ as $production)

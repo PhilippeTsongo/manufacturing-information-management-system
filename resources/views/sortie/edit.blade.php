@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -56,8 +62,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title card-title-dash">Modifiez Cette Sortie</h4>
-                                        <h5 class="card-subtitle card-subtitle-dash">Complétez ce formulaire pour Enregistrer une Nouvelle Sortie</h5>
+                                        <h4 class="card-title card-title-dash">{{ GoogleTranslate::trans('Modifiez Cette Sortie', $appLocale)}}</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">{{ GoogleTranslate::trans('Complétez ce formulaire pour Enregistrer une Nouvelle Sortie', $appLocale)}}</h5>
                                         
                                     </div>
                                     <div id="performance-line-legend"></div>
@@ -76,19 +82,19 @@
                                     <div class="row">
                                       <div class="col-lg 6">   
                                           <div class="form-group">
-                                              <label for="exampleInputUsername1">Libellé</label>
-                                              <input type="text" name="libelle" value="{{ old('libelle') ?? $sortie->libelle }}" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="libellé">
+                                              <label for="exampleInputUsername1">{{ GoogleTranslate::trans('Libellé', $appLocale)}}</label>
+                                              <input type="text" name="libelle" value="{{ old('libelle') ?? $sortie->libelle }}" required autofocus  class="form-control" id="exampleInputUsername1" placeholder="{{ GoogleTranslate::trans('libellé')}}">
                                           </div>
                                       </div>
 
                                       <div class="col-lg 6">   
                                         <div class="form-group">
-                                            <label for="exampleInputUsername2">Montant</label>
+                                            <label for="exampleInputUsername2">{{ GoogleTranslate::trans('Montant', $appLocale)}}</label>
                                             <div class="input-group">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
                                               </div>
-                                              <input type="text" name="montant" value="{{ old('montant') ?? $sortie->montant }}" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="Montant">
+                                              <input type="text" name="montant" value="{{ old('montant') ?? $sortie->montant }}" required autofocus  class="form-control" id="exampleInputUsername2" placeholder="{{ GoogleTranslate::trans('Montant', $appLocale)}}">
                                             </div>
                                         </div>
                                       </div>
@@ -96,16 +102,16 @@
                                   <div class="row">
                                     <div class="col-lg 12">   
                                       <div class="form-group">
-                                          <label for="exampleInputUsername3">description</label>
-                                          <textarea name="description" id="exampleInputUsername3" cols="30" rows="10" class="form-control form-control-lg" placeholder="description">
+                                          <label for="exampleInputUsername3">{{ GoogleTranslate::trans('déscription', $appLocale)}}</label>
+                                          <textarea name="description" id="exampleInputUsername3" cols="30" rows="10" class="form-control form-control-lg" placeholder="{{ GoogleTranslate::trans('déscription', $appLocale)}}">
                                             {{ old('description') ?? $sortie->description }}
                                           </textarea>
                                       </div>
                                     </div>
                                   </div>
 
-                                  <button type="submit" class="btn btn-primary me-2 text-light">Modifiez</button> 
-                                  <button type="reset" class="btn btn-light">Cancel</button>
+                                  <button type="submit" class="btn btn-primary me-2 text-light">{{ GoogleTranslate::trans('Modifiez', $appLocale)}}</button> 
+                                  <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Cancel', $appLocale)}}</button>
                                 </form>
                               </div>
                             </div>
@@ -119,10 +125,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de sorties</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de sorties', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <a href="{{ route('matiere.index')}}">
                                                       <h2 class="text-info">{{ $sorties->count()}}</h2>
                                                     </a>

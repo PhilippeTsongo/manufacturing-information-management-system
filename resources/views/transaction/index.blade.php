@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +54,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Liste de transactions</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Liste de transactions', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="{{ route('transaction.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvelle transaction</a>
+                                <a href="{{ route('transaction.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle transaction', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -69,12 +75,12 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title">Liste de transaction</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de transaction', $appLocale)}}</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
                                     <div>
-                                        <a href="{{ route('transaction.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouvelle transaction</a>
+                                        <a href="{{ route('transaction.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle transaction', $appLocale)}}</a>
                                     </div>
 
                                 </div>
@@ -89,8 +95,8 @@
                                         <thead>
                                             <tr>
                                                 <th># </th>
-                                                <th>Intitulé de la transaction</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Intitulé de la transaction', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 {{-- @if(Auth()->check())
                                                     @if(Auth::user()->user_type == 1)
                                                         <th>Action</th>
@@ -140,10 +146,10 @@
                                 <div class="col-md-6 col-lg-12 grid-margin">
                                     <div class="card bg-primary card-rounded">
                                         <div class="card-body pb-0">
-                                            <h4 class="card-title card-title-dash text-white mb-4">Nombre de transactions</h4>
+                                            <h4 class="card-title card-title-dash text-white mb-4">{{ GoogleTranslate::trans('Nombre de transactions', $appLocale)}}</h4>
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="status-summary-ight-white mb-1">Total</p>
+                                                    <p class="status-summary-ight-white mb-1">{{ GoogleTranslate::trans('Total', $appLocale)}}</p>
                                                     <h2 class="text-info">{{ $transactions->count()}}</h2>
                                                 </div>
                                                 <div class="col-sm-8">

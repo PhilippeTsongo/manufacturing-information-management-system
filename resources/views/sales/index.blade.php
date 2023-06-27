@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                           <li class="nav-item">
-                              <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                              <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $month }}] </a>
+                              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocale)}} [{{ $month }}] </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year"  aria-selected="true">Annuelles [{{ $year }}]</a>
+                              <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year"  aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocale)}} [{{ $year }}]</a>
                           </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                               <div class="btn-group">
-                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                 <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -86,7 +92,7 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de Ventes journalières [{{ $today }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Ventes journalières', $appLocale)}} [{{ $today }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                                   
@@ -101,16 +107,16 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>catégorie</th>
-                                            <th>Type d'emballage</th>
-                                            <th>Quantité</th>
-                                            <th>Prix Unitaire</th>
-                                            <th>Prix Total</th>
-                                            <th>Date</th>
-                                            <th>Client</th>
+                                            <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                            <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
                                             @if(Auth()->check())
                                                 @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                    <th>Action</th>
+                                                    <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                 @endif
                                             @endif
                                         </tr>
@@ -165,12 +171,12 @@
                                         @endforeach
                                         <tr>
                                           <td colspan="4">
-                                            Total 
+                                            {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                           </td>
                                           <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                           
                                           <td>
-                                            <input type="submit" class="btn btn-primary text-light" title="Imprimez les factures de ventes sélectionées" value="Imprimer la facture"> 
+                                            <input type="submit" class="btn btn-primary text-light" title="{{ GoogleTranslate::trans('Imprimez la facture de ventes sélectionées', $appLocale)}}" value="{{ GoogleTranslate::trans('Imprimer la facture', $appLocale)}}"> 
                                           </td>
                                         </tr>
                                       </form>
@@ -196,7 +202,7 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de Ventes Mensuelles [{{ date('M') }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Ventes Mensuelles', $appLocale)}} [{{ date('M') }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                               </div>
@@ -209,19 +215,20 @@
                                 <table class="table table-hover">
                                   <thead>
                                       <tr>
-                                          <th>#</th>
-                                          <th>catégorie</th>
-                                          <th>Type d'emballage</th>
-                                          <th>Quantité</th>
-                                          <th>Prix Unitaire</th>
-                                          <th>Prix Total</th>
-                                          <th>Date</th>
-                                          <th>Client</th>
-                                          @if(Auth()->check())
-                                              @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                  <th>Action</th>
-                                              @endif
+                                        
+                                        <th>#</th>
+                                        <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                        <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
+                                        @if(Auth()->check())
+                                          @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
+                                            <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                           @endif
+                                        @endif                                    
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -278,12 +285,12 @@
                                       @endforeach
                                       <tr>
                                         <td colspan="4">
-                                          Total 
+                                          {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                         </td>
                                         <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         
                                         <td>
-                                          <input type="submit" class="btn btn-primary text-light" title="Imprimez les factures de ventes sélectionées" value="Imprimer la facture"> 
+                                          <input type="submit" class="btn btn-primary text-light" title="{{ GoogleTranslate::trans('Imprimez la facture de ventes sélectionées', $appLocale)}}" value="{{ GoogleTranslate::trans('Imprimer la facture', $appLocale)}}"> 
                                         </td>
                                       </tr>
 
@@ -308,7 +315,7 @@
                             <div class="card-body">
                               <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                      <h4 class="card-title">Liste de Ventes Annuelles [{{ $year }}]</h4>
+                                      <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Ventes Annuelles', $appLocale)}} [{{ $year }}]</h4>
                                   </div>    
                                   <div id="performance-line-legend"></div>
                                   
@@ -323,18 +330,19 @@
                                   <thead>
                                       <tr>
                                           <th>#</th>
-                                          <th>catégorie</th>
-                                          <th>Type d'emballage</th>
-                                          <th>Quantité</th>
-                                          <th>Prix Unitaire</th>
-                                          <th>Prix Total</th>
-                                          <th>Date</th>
-                                          <th>Client</th>
+                                          <th>{{ GoogleTranslate::trans('catégorie', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Type d\'emballage', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Quantité', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Unitaire', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Prix Total', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
+                                          <th>{{ GoogleTranslate::trans('Client', $appLocale)}}</th>
                                           @if(Auth()->check())
-                                               @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
-                                                  <th>Action</th>
-                                              @endif
-                                          @endif
+                                            @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Vendeur')
+                                              <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
+                                            @endif
+                                          @endif       
+
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -388,10 +396,10 @@
                                                       
                                                       <div class="col-lg-6">
                                                           {{-- delete --}}
-                                                          <form action="{{ route('sale.destroy', ['sale' => $year->id ]  ) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette Vente?');">
+                                                          <form action="{{ route('sale.destroy', ['sale' => $year->id ]  ) }}" method="post" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette Vente?', $appLocale)}} ');">
                                                               @csrf
                                                               @method('DELETE')
-                                                              <button type="submit" style="border:none; background: none" title="Supprimez cette Vente" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                              <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette Vente', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                           </form>
                                                       </div>
                                                   </div>
@@ -404,7 +412,7 @@
                                       @endforeach
                                       <tr>
                                         <td colspan="4">
-                                          Total 
+                                          {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                         </td>
                                         <td > <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         
@@ -414,7 +422,6 @@
                                   </tbody>
                                 </table>
                               </div>
-                              
                             </div>
                           </div>
                         </div>

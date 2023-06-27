@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,7 +54,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Résultats</a>
+                            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Résultats', $appLocale)}}</a>
                         </li>
                         </ul>
                     </div>
@@ -64,7 +70,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                    
                                     <div>
-                                        <h4 class="card-title ">Résultats de la recherche du mot: 
+                                        <h4 class="card-title ">{{ GoogleTranslate::trans('Résultats de la recherche du mot:', $appLocale)}} 
                                           <span class="text-danger">{{ $data['search'] }}</span>
                                         </h4>
                                     </div>
@@ -82,10 +88,10 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>Info</th>
-                                                <th>Nom</th>
-                                                <th>Date de création</th>
-                                                <th>Dernière modification</th>
+                                                <th>{{ GoogleTranslate::trans('Info', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date de création', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Dernière modification', $appLocale)}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

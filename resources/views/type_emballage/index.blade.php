@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -69,12 +75,12 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     
                                     <div>    
-                                        <h4 class="card-title">Liste de types d'emballages</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de types d\'emballages', $appLocale )}}</h4>
                                     </div>    
                                     <div id="performance-line-legend"></div>
 
                                     <div>
-                                        <a href="{{ route('type_emballage.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouveau Type de matière</a>
+                                        <a href="{{ route('type_emballage.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouveau Type de matière', $appLocale)}}</a>
                                     </div>
 
                                 </div>
@@ -87,8 +93,8 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
-                                                <th>Déscription</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Description', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
                                                         <th>Action</th>
@@ -109,16 +115,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('type_emballage.edit', ['type_emballage' => $type_emballage->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier ce type d'emballage ?');" title="Modifier ce type d'emballage"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier ce type d\'emballage ?', $appLocale)}} ');" title=" {{ GoogleTranslate::trans('Modifier ce type d\'emballage', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('type_emballage.destroy', ['type_emballage' => $type_emballage->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type d\'emballage?');">
+                                                            <form action="{{ route('type_emballage.destroy', ['type_emballage' => $type_emballage->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer ce type d\'emballage?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez ce type d'emballage " > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez ce type d\'emballage', $appLocale)}} " > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>

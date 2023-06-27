@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,12 +54,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Unité</a>
+                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">{{ GoogleTranslate::trans('Unité', $appLocale)}}</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
-                                <a href="{{ route('unit.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>Nouvelle Unité</a>
+                                <a href="{{ route('unit.create')}}" class="btn btn-primary text-white me-2"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle Unité', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -68,13 +74,13 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste d'unités</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans(Liste d\'unités', $appLocale)}}</h4>
                                     </div>    
 
                                     <div id="performance-line-legend"></div>
 
                                     <div>
-                                        <a href="{{ route('unit.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>Nouvelle Unité</a>
+                                        <a href="{{ route('unit.create')}}" class="btn btn-primary btn-lg text-white mb-0 me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle Unité', $appLocale)}}</a>
                                     </div>
                                 </div>
 
@@ -87,10 +93,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nom</th>
+                                                <th>{{ GoogleTranslate::trans('Nom', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Producteur' OR Auth::user()->userType->name == 'Financier' OR Auth::user()->userType->name == 'Comptable')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -107,16 +113,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('unit.edit', ['unit' => $unit->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette Unité?');" title="Modifier cette Unité"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier cette Unité?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier cette Unité', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('unit.destroy', ['unit' => $unit->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette Unité?');">
+                                                            <form action="{{ route('unit.destroy', ['unit' => $unit->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette Unité?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette Unité " > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette Unité', $appLocale)}} " > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>

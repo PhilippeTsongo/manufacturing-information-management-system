@@ -30,6 +30,12 @@
   @extends('layouts.app')
   
   @section('content')
+
+  {{-- IMPORTANT VARIABLE --}}
+  <?php
+    //shortlisting app()->getLocal
+    $appLocale = app()->getLocale();  
+  ?>
     
   <div class="container-scroller">
     <!-- header   -->
@@ -48,19 +54,19 @@
                     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">Aujourd'hui [{{ $today }}]</a>
+                                <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#daily" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Aujourd\'hui', $appLocale)}} [{{ $today }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">Mensuelles [{{ $month }}]</a>
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#month" role="tab" aria-selected="false">{{ GoogleTranslate::trans('Mensuelles', $appLocale)}} [{{ $month }}]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">Annuelles [{{ $year }}]</a>
+                                <a class="nav-link active ps-0" id="contact-tab" data-bs-toggle="tab" href="#year" role="tab" aria-controls="year" aria-selected="true">{{ GoogleTranslate::trans('Annuelles', $appLocle)}} [{{ $year }}]</a>
                             </li>
                         </ul>
                         <div>
                             <div class="btn-wrapper">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>Imprimer</button>
+                                    <button type="button" class="btn btn-otline-dark"><i class="icon-printer"></i>{{ GoogleTranslate::trans('Imprimer', $appLocale)}}</button>
                                     <button type="button" class="btn btn-otline-dark dropdown-toggle" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
@@ -69,7 +75,7 @@
                                         @endforeach                             
                                     </div>
                                 </div>
-                                <a href="{{ route('sortie.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i> Nouvelle Charge</a>
+                                <a href="{{ route('sortie.create')}}" class="btn btn-primary text-white me-0"><i class="mdi mdi-plus-circle-outline"></i>{{ GoogleTranslate::trans('Nouvelle Charge', $appLocale)}}</a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +89,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Charges Journalières [{{ $today }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Charges Journalières', $appLocale)}} [{{ $today }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -98,12 +104,12 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé/Déescription</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Libellé/Déescription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -124,16 +130,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('sortie.edit', ['sortie' => $daily->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette charge?');" title="Modifier cette charge"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier cette charge?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier cette charge', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('sortie.destroy', ['sortie' => $daily->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette charge?');">
+                                                            <form action="{{ route('sortie.destroy', ['sortie' => $daily->id ]  ) }}" method="POST" onsubmit="return confirm('{{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette charge?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette charge" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette charge', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -170,7 +176,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Charges Mensuelles [{{ date('M') }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Charges Mensuelles', $appLocale)}} [{{ date('M') }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                 </div>
@@ -185,13 +191,12 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé/Déscription</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
-                                                
+                                                <th>{{ GoogleTranslate::trans('Libellé/Déescription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -212,16 +217,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('sortie.edit', ['sortie' => $month->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette charge?');" title="Modifier cette charge"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier cette charge?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier cette charge', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('sortie.destroy', ['sortie' => $month->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette charge?');">
+                                                            <form action="{{ route('sortie.destroy', ['sortie' => $month->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette charge?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette charge" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette charge', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -259,7 +264,7 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                        <h4 class="card-title">Liste de Charges Annuelles [{{ $year }}]</h4>
+                                        <h4 class="card-title">{{ GoogleTranslate::trans('Liste de Charges Annuelles', $appLocale)}} [{{ $year }}]</h4>
                                     </div>
                                     <div id="performance-line-legend"></div>
                                     
@@ -275,12 +280,12 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Libellé/Déescription</th>
-                                                <th>Montant</th>
-                                                <th>Date</th>
+                                                <th>{{ GoogleTranslate::trans('Libellé/Déescription', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Montant', $appLocale)}}</th>
+                                                <th>{{ GoogleTranslate::trans('Date', $appLocale)}}</th>
                                                 @if(Auth()->check())
                                                     @if(Auth::user()->userType->name == 'Administrateur' OR Auth::user()->userType->name == 'Financier')
-                                                        <th>Action</th>
+                                                        <th>{{ GoogleTranslate::trans('Action', $appLocale)}}</th>
                                                     @endif
                                                 @endif
                                             </tr>
@@ -301,16 +306,16 @@
                                                         <div class="col-lg-6">
                                                             {{--  edit  --}}
                                                             <a href="{{ route('sortie.edit', ['sortie' => $year->id]) }}" _method="GET" 
-                                                                onClick="return confirm('Voulez-vous vraiment modifier cette charge?');" title="Modifier cette charge"> 
+                                                                onClick="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment modifier cette charge?', $appLocale)}} ');" title="{{ GoogleTranslate::trans('Modifier cette charge', $appLocale)}}"> 
                                                                 <i class="mdi mdi-pencil text-info"></i>
                                                             </a>
                                                         </div>  
                                                         <div class="col-lg-6">
                                                             {{-- delete --}}
-                                                            <form action="{{ route('sortie.destroy', ['sortie' => $year->id ]  ) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette charge?');">
+                                                            <form action="{{ route('sortie.destroy', ['sortie' => $year->id ]  ) }}" method="POST" onsubmit="return confirm(' {{ GoogleTranslate::trans('Voulez-vous vraiment supprimer cette charge?', $appLocale)}} ');">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <button type="submit" style="border:none; background: none" title="Supprimez cette charge" > <i class="mdi mdi-delete-forever text-danger"></i></button>
+                                                                <button type="submit" style="border:none; background: none" title="{{ GoogleTranslate::trans('Supprimez cette charge', $appLocale)}}" > <i class="mdi mdi-delete-forever text-danger"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -322,7 +327,7 @@
                                         @endforeach
                                         <tr>
                                             <td colspan="2">
-                                                Total 
+                                                {{ GoogleTranslate::trans('Total', $appLocale)}} 
                                             </td>
                                             <td colspan="3"> <div class="badge badge-opacity-warning"><b><?= number_format($total, 02) .'$' ?></b></div> </td>
                                         </tr>
